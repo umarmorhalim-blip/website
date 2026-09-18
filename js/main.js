@@ -21,13 +21,7 @@ function applyTheme(theme) {
   try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
 }
 
-(function initTheme() {
-  let saved;
-  try { saved = localStorage.getItem(THEME_KEY); } catch (_) {}
-  const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  applyTheme(saved || sys);
-})();
-
+/* initTheme runs inline in <head> to prevent FOUC — this handles toggle clicks only */
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
     applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
@@ -40,7 +34,9 @@ function updateProgress() {
   if (!progressBar) return;
   const scrollTop = window.scrollY;
   const docH = document.documentElement.scrollHeight - window.innerHeight;
-  progressBar.style.width = (docH > 0 ? (scrollTop / docH) * 100 : 0) + '%';
+  const pct = docH > 0 ? (scrollTop / docH) * 100 : 0;
+  progressBar.style.width = pct + '%';
+  progressBar.setAttribute('aria-valuenow', Math.round(pct));
 }
 window.addEventListener('scroll', updateProgress, { passive: true });
 
@@ -67,12 +63,17 @@ window.addEventListener('scroll', updateBackTop, { passive: true });
 const menuToggle = document.getElementById('menu-toggle');
 const mobileNav = document.getElementById('mobile-nav');
 const mobileClose = document.getElementById('mobile-nav-close');
+let lastFocusBeforeNav = null;
 
 function openMobileNav() {
-  if (!mobileNav) return;
+  if (!mobileNav || mobileNav.classList.contains('open')) return;
+  lastFocusBeforeNav = document.activeElement;
   mobileNav.classList.add('open');
   document.body.classList.add('menu-open');
   menuToggle && menuToggle.setAttribute('aria-expanded', 'true');
+  const firstFocusable = mobileNav.querySelector('button, a, input');
+  firstFocusable && firstFocusable.focus();
+  trapFocus(mobileNav);
 }
 
 function closeMobileNav() {
@@ -80,6 +81,8 @@ function closeMobileNav() {
   mobileNav.classList.remove('open');
   document.body.classList.remove('menu-open');
   menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
+  releaseFocusTrap();
+  lastFocusBeforeNav && lastFocusBeforeNav.focus();
 }
 
 menuToggle && menuToggle.addEventListener('click', openMobileNav);
@@ -88,6 +91,31 @@ mobileNav && mobileNav.addEventListener('click', (e) => {
   if (e.target === mobileNav) closeMobileNav();
 });
 
+/* --- Focus Trap --- */
+let _trapEl = null;
+let _trapHandler = null;
+
+function trapFocus(el) {
+  _trapEl = el;
+  const focusable = el.querySelectorAll('a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])');
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  _trapHandler = (e) => {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  };
+  el.addEventListener('keydown', _trapHandler);
+}
+
+function releaseFocusTrap() {
+  if (_trapEl && _trapHandler) _trapEl.removeEventListener('keydown', _trapHandler);
+  _trapEl = null; _trapHandler = null;
+}
+
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') { closeMobileNav(); closeAllModals(); }
 });
@@ -95,17 +123,18 @@ document.addEventListener('keydown', (e) => {
 /* --- Full-Site Search --- */
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
+const searchBtn = document.querySelector('.header-search button');
 
 const searchData = [
   { title: 'Home', url: '/', desc: 'Welcome to Qawwam Empire', section: 'Pages' },
-  { title: 'About Us', url: '#about', desc: 'Our story, mission and values', section: 'Pages' },
-  { title: 'Services', url: '#services', desc: 'Consulting, strategy and execution', section: 'Pages' },
-  { title: 'Blog', url: '#blog', desc: 'Articles and insights', section: 'Pages' },
-  { title: 'Contact', url: '#contact', desc: 'Get in touch with our team', section: 'Pages' },
+  { title: 'About Us', url: '/#about', desc: 'Our story, mission and values', section: 'Pages' },
+  { title: 'Services', url: '/#services', desc: 'Consulting, strategy and execution', section: 'Pages' },
+  { title: 'Blog', url: '/#blog', desc: 'Articles and insights', section: 'Pages' },
+  { title: 'Contact', url: '/#contact', desc: 'Get in touch with our team', section: 'Pages' },
   { title: 'Performance Optimization Guide', url: 'blog/performance.html', desc: 'N+1 queries, re-renders, and more', section: 'Blog' },
-  { title: 'Web Vitals Deep Dive', url: '#', desc: 'LCP, CLS, FID and TTFB explained', section: 'Blog' },
-  { title: 'FAQ', url: '#faq', desc: 'Frequently asked questions', section: 'Pages' },
-  { title: 'Newsletter', url: '#newsletter', desc: 'Stay updated with our content', section: 'Pages' },
+  { title: 'Web Vitals Deep Dive', url: '/#blog', desc: 'LCP, CLS, FID and TTFB explained', section: 'Blog' },
+  { title: 'FAQ', url: '/#faq', desc: 'Frequently asked questions', section: 'Pages' },
+  { title: 'Newsletter', url: '/#newsletter', desc: 'Stay updated with our content', section: 'Pages' },
 ];
 
 function renderSearch(query) {
@@ -118,19 +147,24 @@ function renderSearch(query) {
   const grouped = {};
   hits.forEach(h => { (grouped[h.section] = grouped[h.section] || []).push(h); });
   const inner = searchResults.querySelector('.search-results-inner');
+  if (!inner) return;
   if (hits.length === 0) {
     inner.innerHTML = `<p class="search-empty">No results for "<strong>${escapeHtml(query)}</strong>"</p>`;
   } else {
     inner.innerHTML = Object.entries(grouped).map(([section, items]) => `
       <h3>${escapeHtml(section)}</h3>
-      ${items.map(item => `
-        <a class="search-result-item" href="${item.url}">
-          <div>
-            <h4>${highlight(item.title, q)}</h4>
-            <p>${highlight(item.desc, q)}</p>
-          </div>
-        </a>
-      `).join('')}
+      <ul role="list">
+        ${items.map(item => `
+          <li role="listitem">
+            <a class="search-result-item" href="${item.url}">
+              <div>
+                <h4>${highlight(item.title, q)}</h4>
+                <p>${highlight(item.desc, q)}</p>
+              </div>
+            </a>
+          </li>
+        `).join('')}
+      </ul>
     `).join('');
   }
   searchResults.classList.add('open');
@@ -146,6 +180,8 @@ function escapeHtml(str) {
   return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
+window.renderSearch = renderSearch;
+
 if (searchInput) {
   let debounceTimer;
   searchInput.addEventListener('input', () => {
@@ -155,9 +191,16 @@ if (searchInput) {
   searchInput.addEventListener('focus', () => { if (searchInput.value) renderSearch(searchInput.value); });
   document.addEventListener('click', (e) => {
     if (!searchResults) return;
-    if (!searchResults.contains(e.target) && e.target !== searchInput) {
+    if (!searchResults.contains(e.target) && e.target !== searchInput && e.target !== searchBtn) {
       searchResults.classList.remove('open');
     }
+  });
+}
+
+if (searchBtn && searchInput) {
+  searchBtn.addEventListener('click', () => {
+    if (searchInput.value.trim()) renderSearch(searchInput.value);
+    else searchInput.focus();
   });
 }
 
@@ -166,23 +209,56 @@ document.querySelectorAll('.faq-question').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
   });
 });
 
 /* --- Newsletter --- */
 const newsletterForm = document.getElementById('newsletter-form');
 const newsletterSuccess = document.getElementById('newsletter-success');
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 if (newsletterForm) {
   newsletterForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const email = newsletterForm.querySelector('input[type="email"]').value;
-    if (!email) return;
+    const emailInput = newsletterForm.querySelector('input[type="email"]');
+    const email = emailInput ? emailInput.value.trim() : '';
+    if (!email || !EMAIL_RE.test(email)) {
+      showToast('Please enter a valid email address', 'error');
+      emailInput && emailInput.focus();
+      return;
+    }
     newsletterForm.style.display = 'none';
     if (newsletterSuccess) newsletterSuccess.classList.add('visible');
     try { localStorage.setItem('qe-newsletter', '1'); } catch (_) {}
+  });
+}
+
+/* --- Contact Form --- */
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = contactForm.querySelector('#name')?.value.trim();
+    const email = contactForm.querySelector('#email')?.value.trim();
+    const msg = contactForm.querySelector('#message')?.value.trim();
+    if (!name || !email || !msg) {
+      showToast('Please fill in all required fields', 'error');
+      return;
+    }
+    if (!EMAIL_RE.test(email)) {
+      showToast('Please enter a valid email address', 'error');
+      return;
+    }
+    showToast("Message sent! We'll reply within 24 hours.", 'success');
+    contactForm.reset();
   });
 }
 
@@ -200,16 +276,29 @@ document.querySelectorAll('.pw-toggle').forEach(btn => {
 });
 
 /* --- Confirmation Modals --- */
+let _lastModalTrigger = null;
+
+function openModal(modal) {
+  if (!modal) return;
+  modal.classList.add('open');
+  const firstFocusable = modal.querySelector('button, a, input, [tabindex]');
+  firstFocusable && firstFocusable.focus();
+  trapFocus(modal);
+}
+
 function closeAllModals() {
   document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+  releaseFocusTrap();
+  _lastModalTrigger && _lastModalTrigger.focus();
+  _lastModalTrigger = null;
 }
 
 document.querySelectorAll('[data-confirm]').forEach(trigger => {
   trigger.addEventListener('click', (e) => {
     e.preventDefault();
+    _lastModalTrigger = trigger;
     const modalId = trigger.getAttribute('data-confirm');
-    const modal = document.getElementById(modalId);
-    if (modal) modal.classList.add('open');
+    openModal(document.getElementById(modalId));
   });
 });
 
@@ -240,18 +329,24 @@ function initCookieBanner() {
   let accepted;
   try { accepted = localStorage.getItem(COOKIE_KEY); } catch (_) {}
   if (!accepted && cookieBanner) {
-    setTimeout(() => cookieBanner.classList.add('visible'), 1200);
+    setTimeout(() => {
+      cookieBanner.classList.add('visible');
+      document.body.classList.add('cookie-active');
+    }, 1200);
   }
+}
+
+function dismissCookie() {
+  cookieBanner && cookieBanner.classList.remove('visible');
+  document.body.classList.remove('cookie-active');
 }
 
 document.getElementById('cookie-accept')?.addEventListener('click', () => {
   try { localStorage.setItem(COOKIE_KEY, '1'); } catch (_) {}
-  cookieBanner && cookieBanner.classList.remove('visible');
+  dismissCookie();
 });
 
-document.getElementById('cookie-decline')?.addEventListener('click', () => {
-  cookieBanner && cookieBanner.classList.remove('visible');
-});
+document.getElementById('cookie-decline')?.addEventListener('click', dismissCookie);
 
 initCookieBanner();
 
@@ -279,15 +374,16 @@ function showToast(msg, type = 'default') {
   if (!toast) {
     toast = document.createElement('div');
     toast.id = 'toast';
-    toast.className = 'toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
     document.body.appendChild(toast);
   }
   toast.className = `toast toast-${type}`;
-  const icon = type === 'success' ? '✓' : 'ℹ';
-  toast.innerHTML = `<span>${icon}</span> ${escapeHtml(msg)}`;
+  const icon = type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ';
+  toast.innerHTML = `<span aria-hidden="true">${icon}</span> ${escapeHtml(msg)}`;
   toast.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
 }
 
 /* --- Ripple Effect --- */
@@ -295,6 +391,7 @@ document.querySelectorAll('.btn').forEach(btn => {
   btn.addEventListener('click', function(e) {
     const ripple = document.createElement('span');
     ripple.classList.add('ripple');
+    ripple.setAttribute('aria-hidden', 'true');
     const rect = this.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
     ripple.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size/2}px;top:${e.clientY - rect.top - size/2}px`;
@@ -357,7 +454,7 @@ document.querySelectorAll('a[href]').forEach(link => {
   if (!href) return;
   try {
     const u = new URL(href, window.location.href);
-    if (u.hostname && u.hostname !== window.location.hostname && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+    if (u.hostname && u.hostname !== window.location.hostname && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
       link.addEventListener('click', function() {
         this.setAttribute('href', addUtmToLink(this.getAttribute('href')));
       });
@@ -383,9 +480,13 @@ document.querySelectorAll('[data-updated]').forEach(el => {
   el.setAttribute('title', d.toLocaleString());
 });
 
-/* --- Active Nav Link --- */
+/* --- Active Nav Link (page-level only, not hash anchors) --- */
 const currentPath = window.location.pathname;
 document.querySelectorAll('.nav-links a, .mobile-nav-panel a').forEach(link => {
-  const linkPath = new URL(link.href, window.location.href).pathname;
-  if (linkPath === currentPath) link.setAttribute('aria-current', 'page');
+  const href = link.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('/#')) return;
+  try {
+    const linkPath = new URL(link.href, window.location.href).pathname;
+    if (linkPath === currentPath) link.setAttribute('aria-current', 'page');
+  } catch (_) {}
 });
