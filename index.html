@@ -1,604 +1,1102 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Qawwam Empire — Strategy, consulting and execution for ambitious businesses." />
-  <meta property="og:title" content="Qawwam Empire" />
-  <meta property="og:description" content="Strategy, consulting and execution for ambitious businesses." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://qawwamempire.com/og-image.png" />
-  <title>Qawwam Empire</title>
-  <script>
-    (function(){try{var t=localStorage.getItem('qe-theme'),s=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t||s);}catch(e){}})();
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/main.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Qawwam Empire Sdn Bhd — Shariah-compliant corporate solutions company in Malaysia. HRDC-approved training, blockchain advisory, cybersecurity, digital assets, and business consultancy. Bandar Baru Bangi, Selangor."/>
+<meta name="keywords" content="corporate solutions Malaysia, Shariah advisory Malaysia, HRDC approved training, blockchain advisory Malaysia, cybersecurity Malaysia, digital assets Malaysia, business consultancy Selangor, Qawwam Empire"/>
+<meta name="robots" content="index,follow"/>
+<meta name="author" content="Qawwam Empire Sdn Bhd"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Qawwam Empire Sdn Bhd | Corporate Solutions &amp; Shariah Advisory Malaysia"/>
+<meta property="og:description" content="Shariah-compliant corporate solutions company in Malaysia. HRDC-approved training, blockchain advisory, cybersecurity and digital assets consultancy."/>
+<meta property="og:url" content="https://www.qawwamempire.com/"/>
+<meta property="og:image" content="https://qawwamempire.com/og-image.png"/>
+<link rel="canonical" href="https://www.qawwamempire.com/"/>
+<link rel="icon" type="image/png" href="https://qawwamempire.com/logo.png"/>
+<title>Qawwam Empire Sdn Bhd | Corporate Solutions &amp; Shariah Advisory Malaysia</title>
+
+<!-- FOUC prevention: set theme before paint -->
+<script>(function(){try{var t=localStorage.getItem('qe-theme');document.documentElement.setAttribute('data-theme',t||'dark');}catch(e){}})()</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+/* ── TOKENS ──────────────────────────────────── */
+:root{
+  --bg:       #060d1a;
+  --bg-alt:   #0a1628;
+  --bg-card:  #0d1e35;
+  --navy:     #002B5C;
+  --gold:     #C9A84C;
+  --gold-lt:  #e0bf6a;
+  --text:     #f0ede8;
+  --muted:    #8a9ab5;
+  --border:   rgba(201,168,76,.18);
+  --border-s: rgba(201,168,76,.08);
+  --overlay:  rgba(4,10,24,.75);
+  --radius:   10px;
+  --radius-lg:18px;
+  --t:        220ms ease;
+  --header-h: 72px;
+  --font-h:   'Playfair Display',Georgia,serif;
+  --font-b:   'Inter',system-ui,-apple-system,sans-serif;
+  --shadow:   0 4px 24px rgba(0,0,0,.4);
+}
+[data-theme="light"]{
+  --bg:      #f5f3ee;
+  --bg-alt:  #ede9e0;
+  --bg-card: #ffffff;
+  --text:    #0d1e35;
+  --muted:   #5a6a82;
+  --border:  rgba(0,43,92,.2);
+  --border-s:rgba(0,43,92,.08);
+  --overlay: rgba(240,237,232,.85);
+  --shadow:  0 4px 24px rgba(0,0,0,.12);
+}
+
+/* ── RESET ───────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-b);background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;transition:background var(--t),color var(--t)}
+body.no-scroll{overflow:hidden}
+img,video{max-width:100%;height:auto;display:block}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+button{cursor:pointer;font:inherit;border:none;background:none}
+ul{list-style:none}
+h1,h2,h3,h4{font-family:var(--font-h);line-height:1.2}
+
+/* ── ACCESSIBILITY ───────────────────────────── */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:fixed;top:-100%;left:1rem;z-index:10000;padding:.6rem 1.25rem;background:#002B5C;color:#fff;border-radius:6px;font-weight:600;transition:top .15s ease}
+.skip-link:focus{top:1rem}
+
+/* ── SCROLL PROGRESS ─────────────────────────── */
+#scroll-bar{position:fixed;top:0;left:0;z-index:9999;height:3px;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold-lt));transition:width .1s linear}
+
+/* ── HEADER ──────────────────────────────────── */
+.site-nav{position:sticky;top:0;z-index:900;height:var(--header-h);display:flex;align-items:center;padding:0 1.5rem;background:transparent;transition:background var(--t),backdrop-filter var(--t),box-shadow var(--t)}
+.site-nav.scrolled{background:rgba(6,13,26,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
+[data-theme="light"] .site-nav.scrolled{background:rgba(245,243,238,.9)}
+.nav-inner{max-width:1240px;width:100%;margin:0 auto;display:flex;align-items:center;gap:1.5rem}
+.nav-logo img{height:44px;width:auto;object-fit:contain;display:block}
+.nav-links{display:flex;gap:1.75rem;margin-left:auto}
+.nav-links a{font-size:.875rem;font-weight:500;color:var(--muted);letter-spacing:.03em;transition:color var(--t);position:relative;text-decoration:none}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width var(--t)}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--text)}
+.nav-links a:hover::after,.nav-links a[aria-current="page"]::after{width:100%}
+.nav-cta{background:var(--gold);color:#111!important;padding:.45rem 1.1rem;border-radius:6px;font-weight:600!important;font-size:.8rem!important;letter-spacing:.04em;text-transform:uppercase;transition:background var(--t),transform var(--t),box-shadow var(--t)}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--gold-lt)!important;transform:translateY(-1px);box-shadow:0 4px 14px rgba(201,168,76,.4);text-decoration:none}
+.nav-actions{display:flex;align-items:center;gap:.5rem;margin-left:1rem}
+
+/* Search in header */
+.header-search{position:relative;display:flex;align-items:center}
+.header-search input{background:rgba(255,255,255,.07);border:1px solid var(--border);border-radius:20px;padding:.38rem 2.2rem .38rem .9rem;font-size:.82rem;color:var(--text);outline:none;width:180px;transition:width var(--t),border-color var(--t),background var(--t)}
+.header-search input::placeholder{color:var(--muted)}
+.header-search input:focus{width:240px;border-color:var(--gold);background:rgba(201,168,76,.06)}
+.header-search-btn{position:absolute;right:.55rem;color:var(--muted);display:flex;transition:color var(--t)}
+.header-search-btn:hover{color:var(--gold)}
+
+/* Theme toggle */
+.theme-btn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:color var(--t),background var(--t)}
+.theme-btn:hover{color:var(--gold);background:var(--border-s)}
+.theme-btn .i-moon{display:block}
+.theme-btn .i-sun{display:none}
+[data-theme="light"] .theme-btn .i-moon{display:none}
+[data-theme="light"] .theme-btn .i-sun{display:block}
+
+/* Hamburger */
+.nav-burger{display:none;width:40px;height:40px;align-items:center;justify-content:center;color:var(--text);border-radius:6px;transition:background var(--t)}
+.nav-burger:hover{background:var(--border-s)}
+
+/* ── SEARCH RESULTS ──────────────────────────── */
+#search-results{position:fixed;top:var(--header-h);left:0;right:0;z-index:850;background:var(--bg-alt);border-bottom:1px solid var(--border);box-shadow:var(--shadow);max-height:380px;overflow-y:auto;opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .2s ease,transform .2s ease}
+#search-results.open{opacity:1;pointer-events:all;transform:translateY(0)}
+.sr-inner{max-width:800px;margin:0 auto;padding:1rem}
+.sr-group h3{font-family:var(--font-b);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.5rem}
+.sr-item{display:flex;gap:.75rem;padding:.65rem .75rem;border-radius:6px;cursor:pointer;text-decoration:none;color:var(--text);transition:background var(--t)}
+.sr-item:hover{background:var(--border-s)}
+.sr-item h4{font-family:var(--font-b);font-size:.875rem;font-weight:600;margin-bottom:.1rem}
+.sr-item p{font-size:.78rem;color:var(--muted)}
+.sr-empty{padding:2rem;text-align:center;color:var(--muted);font-size:.875rem}
+mark{background:rgba(201,168,76,.25);color:var(--gold);border-radius:2px;padding:0 2px}
+
+/* ── MOBILE NAV ──────────────────────────────── */
+.mobile-overlay{position:fixed;inset:0;z-index:800;background:var(--overlay);display:none}
+.mobile-overlay.open{display:flex}
+.mobile-panel{background:var(--bg-alt);width:min(300px,82vw);height:100%;padding:5rem 1.5rem 2rem;display:flex;flex-direction:column;gap:.25rem;overflow-y:auto;animation:slideIn .25s ease}
+@keyframes slideIn{from{transform:translateX(-100%)}to{transform:translateX(0)}}
+.mobile-panel a{font-size:1rem;color:var(--muted);padding:.75rem 1rem;border-radius:6px;font-weight:500;transition:background var(--t),color var(--t);text-decoration:none;display:block}
+.mobile-panel a:hover{background:var(--border-s);color:var(--text)}
+.mobile-close-btn{position:absolute;top:1.25rem;right:1.25rem;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--muted);border-radius:50%;transition:background var(--t)}
+.mobile-close-btn:hover{background:var(--border-s)}
+.mobile-search-wrap{padding:.5rem 0 .75rem;border-bottom:1px solid var(--border);margin-bottom:.75rem}
+.mobile-search-wrap input{width:100%;padding:.55rem .9rem;background:rgba(255,255,255,.07);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.875rem;outline:none}
+.mobile-search-wrap input::placeholder{color:var(--muted)}
+
+/* ── LOADER ──────────────────────────────────── */
+#page-loader{position:fixed;inset:0;z-index:9998;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .4s ease}
+#page-loader.gone{opacity:0;pointer-events:none}
+.loader-ring{width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── HERO ────────────────────────────────────── */
+.hero{position:relative;min-height:calc(92vh - var(--header-h));display:flex;align-items:center;overflow:hidden}
+.hero-pattern{position:absolute;inset:0;z-index:0;opacity:.35}
+.hero-grad{position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,var(--bg) 40%,transparent 100%)}
+.hero-grad-b{position:absolute;bottom:0;left:0;right:0;z-index:1;height:160px;background:linear-gradient(to top,var(--bg),transparent)}
+.hero-content{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:5rem 1.5rem 4rem;width:100%}
+.hero-eyebrow{display:flex;align-items:center;gap:.75rem;margin-bottom:1.75rem}
+.hero-line{width:32px;height:1px;background:var(--gold)}
+.hero-eye-text{font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-size:clamp(2.6rem,6vw,5rem);font-weight:700;line-height:1.05;margin-bottom:1.5rem;max-width:640px}
+.hero h1 .accent{color:var(--gold)}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:540px;line-height:1.75;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-gold{display:inline-flex;align-items:center;gap:.45rem;padding:.72rem 1.6rem;background:var(--gold);color:#111;border-radius:6px;font-size:.875rem;font-weight:700;letter-spacing:.03em;border:2px solid var(--gold);transition:background var(--t),transform var(--t),box-shadow var(--t);text-decoration:none;position:relative;overflow:hidden}
+.btn-gold:hover{background:var(--gold-lt);border-color:var(--gold-lt);transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,168,76,.4);text-decoration:none}
+.btn-ghost{display:inline-flex;align-items:center;gap:.45rem;padding:.72rem 1.6rem;background:transparent;color:var(--gold);border-radius:6px;font-size:.875rem;font-weight:600;letter-spacing:.03em;border:1.5px solid var(--border);transition:border-color var(--t),background var(--t),transform var(--t);text-decoration:none}
+.btn-ghost:hover{border-color:var(--gold);background:rgba(201,168,76,.07);transform:translateY(-2px);text-decoration:none}
+.hero-panel{position:absolute;right:5%;top:50%;transform:translateY(-50%);z-index:3;background:rgba(13,30,53,.7);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;backdrop-filter:blur(12px);min-width:200px}
+[data-theme="light"] .hero-panel{background:rgba(255,255,255,.85)}
+.hero-panel-top-lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.2rem}
+.hero-panel-top-val{font-family:var(--font-h);font-size:2rem;font-weight:700;color:var(--gold);line-height:1}
+.hero-panel-items{margin-top:1rem;display:flex;flex-direction:column;gap:.65rem}
+.hero-panel-item{display:flex;align-items:center;gap:.6rem}
+.hero-panel-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.hero-panel-dot:nth-child(1){animation-delay:.6s}
+.hero-panel-text{font-size:.78rem;color:var(--muted)}
+
+/* ── TICKER ──────────────────────────────────── */
+.ticker{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.7rem 0;background:var(--bg-alt)}
+.ticker-track{display:flex;gap:0;white-space:nowrap;animation:ticker 28s linear infinite}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{display:inline-flex;align-items:center;font-size:.78rem;font-weight:500;color:var(--muted);letter-spacing:.05em;padding:0 1.5rem;text-transform:uppercase}
+.ticker-sep{display:inline-block;width:5px;height:5px;background:var(--gold);border-radius:50%;margin-left:1.5rem;opacity:.5}
+
+/* ── SECTION SHARED ──────────────────────────── */
+.section{padding:5rem 0}
+.container{max-width:1240px;margin:0 auto;padding:0 1.5rem}
+.sec-label{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
+.sec-label-line{width:28px;height:1px;background:var(--gold)}
+.sec-label-text{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.sec-title{font-size:clamp(1.75rem,3.5vw,2.5rem);margin-bottom:.75rem}
+.sec-sub{color:var(--muted);font-size:1rem;max-width:560px;line-height:1.7}
+
+/* ── REVEAL ANIMATION ────────────────────────── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ── ABOUT ───────────────────────────────────── */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-text{color:var(--muted);line-height:1.8;margin-bottom:1.75rem}
+.about-photo{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-lg);border:1px solid var(--border)}
+.about-photo-frame{position:relative}
+.about-photo-frame::before{content:'';position:absolute;inset:-8px;border:1px solid var(--border);border-radius:calc(var(--radius-lg) + 8px);pointer-events:none}
+
+/* ── LEADER ──────────────────────────────────── */
+.leader{background:var(--bg-alt);border-top:1px solid var(--border-s);border-bottom:1px solid var(--border-s)}
+.leader-inner{display:grid;grid-template-columns:340px 1fr;gap:4rem;align-items:center}
+.leader-photo{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--radius-lg)}
+.quote-mark{font-family:var(--font-h);font-size:5rem;color:var(--gold);opacity:.25;line-height:.8;margin-bottom:.25rem}
+.quote-text{font-size:1.05rem;color:var(--muted);line-height:1.8;font-style:italic;margin-bottom:1.5rem}
+.leader-name{font-weight:700;font-size:1rem;margin-bottom:.25rem}
+.leader-pos{font-size:.82rem;color:var(--muted);line-height:1.6}
+.leader-divider{width:40px;height:2px;background:var(--gold);margin-top:1rem}
+
+/* ── SERVICES ────────────────────────────────── */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
+.svc-card{background:var(--bg-card);border:1px solid var(--border-s);border-radius:var(--radius-lg);overflow:hidden;transition:border-color var(--t),transform var(--t),box-shadow var(--t)}
+.svc-card:hover{border-color:var(--border);transform:translateY(-4px);box-shadow:var(--shadow)}
+.svc-bar{height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-lt))}
+.svc-body{padding:1.75rem}
+.svc-icon{margin-bottom:1.25rem}
+.svc-num{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.svc-title{font-size:1.15rem;font-family:var(--font-h);font-weight:700;margin-bottom:.75rem}
+.svc-desc{font-size:.875rem;color:var(--muted);line-height:1.7;margin-bottom:.75rem}
+.svc-badge{display:inline-block;padding:.3rem .8rem;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);color:var(--gold);border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:.5rem}
+
+/* ── ADVISERS ────────────────────────────────── */
+.advisers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:2rem}
+.adviser-card{background:var(--bg-card);border:1px solid var(--border-s);border-radius:var(--radius-lg);padding:1.75rem;text-align:center;transition:border-color var(--t)}
+.adviser-card:hover{border-color:var(--border)}
+.adviser-icon{width:52px;height:52px;margin:0 auto .75rem;display:flex;align-items:center;justify-content:center}
+.adviser-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
+.adviser-divider{width:30px;height:1px;background:var(--border);margin:.75rem auto}
+.adviser-name{font-size:.9rem;font-weight:600}
+.advisers-sub{color:var(--muted);font-size:.9rem;max-width:520px;margin-top:.75rem}
+
+/* ── PARTNERS ────────────────────────────────── */
+.partners-row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2rem}
+.partner-cell{background:var(--bg-card);border:1px solid var(--border-s);border-radius:var(--radius);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:center;min-width:160px;transition:border-color var(--t)}
+.partner-cell:hover{border-color:var(--border)}
+.partner-cell img{max-height:40px;max-width:120px;object-fit:contain;filter:grayscale(1) brightness(.7);transition:filter var(--t)}
+.partner-cell:hover img{filter:none}
+.partner-cell span{font-size:.85rem;font-weight:600;color:var(--muted)}
+
+/* ── FAQ ─────────────────────────────────────── */
+.faq-list{max-width:720px;margin:2rem auto 0}
+.faq-item{border:1px solid var(--border-s);border-radius:var(--radius);overflow:hidden;margin-bottom:.65rem;transition:border-color var(--t)}
+.faq-item.open{border-color:var(--border)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;font-size:.925rem;font-weight:600;color:var(--text);background:var(--bg-card);text-align:left;gap:1rem;transition:background var(--t)}
+.faq-q:hover{background:var(--bg-alt)}
+.faq-icon{width:22px;height:22px;border-radius:50%;background:var(--border-s);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.85rem;color:var(--muted);transition:transform var(--t),background var(--t),color var(--t)}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--gold);color:#111}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-ans-inner{padding:0 1.25rem;font-size:.875rem;color:var(--muted);line-height:1.75}
+.faq-item.open .faq-ans{max-height:400px}
+.faq-item.open .faq-ans-inner{padding:.875rem 1.25rem}
+
+/* ── NEWSLETTER ──────────────────────────────── */
+.newsletter-wrap{background:linear-gradient(135deg,rgba(0,43,92,.8),rgba(6,13,26,.95));border:1px solid var(--border);border-radius:var(--radius-lg);padding:3rem;position:relative;overflow:hidden}
+.newsletter-wrap::after{content:'';position:absolute;right:-60px;bottom:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,168,76,.08),transparent 70%);pointer-events:none}
+.newsletter-wrap h2{font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.5rem}
+.newsletter-wrap p{color:var(--muted);margin-bottom:1.75rem;max-width:420px}
+.nl-form{display:flex;gap:.75rem;flex-wrap:wrap;max-width:480px}
+.nl-form input{flex:1;min-width:200px;padding:.7rem 1rem;border:1.5px solid var(--border);border-radius:6px;background:rgba(255,255,255,.06);color:var(--text);font-size:.875rem;outline:none;transition:border-color var(--t)}
+.nl-form input::placeholder{color:var(--muted)}
+.nl-form input:focus{border-color:var(--gold)}
+.nl-success{display:none;align-items:center;gap:.75rem;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:6px;padding:.875rem 1.25rem;color:var(--text);font-size:.875rem;font-weight:500}
+.nl-success.show{display:flex}
+
+/* ── CONTACT FORM ────────────────────────────── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:1.25rem}
+.ci-item{display:flex;align-items:flex-start;gap:.875rem}
+.ci-icon{width:36px;height:36px;border-radius:8px;background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
+.ci-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.2rem}
+.ci-val{font-size:.875rem;font-weight:500}
+.form-group{margin-bottom:1rem}
+.form-label{display:block;font-size:.8rem;font-weight:600;margin-bottom:.4rem;color:var(--muted)}
+.form-input{width:100%;padding:.65rem 1rem;border:1.5px solid var(--border-s);border-radius:6px;background:var(--bg-card);color:var(--text);font-size:.875rem;font-family:inherit;outline:none;transition:border-color var(--t),box-shadow var(--t)}
+.form-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.1)}
+textarea.form-input{resize:vertical;min-height:110px}
+.input-group{position:relative;display:flex;align-items:center}
+.input-group .form-input{padding-right:2.75rem}
+.pw-eye{position:absolute;right:.75rem;color:var(--muted);display:flex;align-items:center;transition:color var(--t)}
+.pw-eye:hover{color:var(--gold)}
+
+/* ── COOKIE ──────────────────────────────────── */
+#cookie-bar{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(140%);z-index:950;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.5rem;max-width:540px;width:calc(100% - 2rem);box-shadow:var(--shadow);display:flex;align-items:center;gap:1rem;flex-wrap:wrap;transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
+#cookie-bar.show{transform:translateX(-50%) translateY(0)}
+#cookie-bar p{font-size:.82rem;color:var(--muted);flex:1;min-width:200px}
+.cookie-btns{display:flex;gap:.5rem;flex-shrink:0}
+
+/* ── FLOAT CONTACT ───────────────────────────── */
+.float-btn{position:fixed;bottom:5.5rem;right:1.5rem;z-index:800;width:52px;height:52px;border-radius:50%;background:var(--gold);color:#111;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(201,168,76,.4);transition:transform var(--t),box-shadow var(--t);text-decoration:none}
+.float-btn:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(201,168,76,.55);text-decoration:none}
+.float-tip{position:absolute;right:120%;top:50%;transform:translateY(-50%);background:var(--bg-card);border:1px solid var(--border);padding:.3rem .75rem;border-radius:6px;font-size:.75rem;font-weight:600;white-space:nowrap;color:var(--text);opacity:0;pointer-events:none;transition:opacity var(--t)}
+.float-btn:hover .float-tip{opacity:1}
+
+/* ── BACK TO TOP ─────────────────────────────── */
+#back-top{position:fixed;bottom:1.5rem;right:1.5rem;z-index:800;width:44px;height:44px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border-s);color:var(--muted);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity var(--t),transform var(--t),color var(--t)}
+#back-top.show{opacity:1;pointer-events:all;transform:translateY(0)}
+#back-top:hover{color:var(--gold)}
+body.cookie-active #back-top.show{bottom:7.5rem}
+
+/* ── MODAL ───────────────────────────────────── */
+.modal-bg{position:fixed;inset:0;z-index:1000;background:rgba(6,13,26,.8);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .2s ease}
+.modal-bg.open{opacity:1;pointer-events:all}
+.modal-box{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;max-width:440px;width:100%;box-shadow:var(--shadow);transform:scale(.95);transition:transform .2s ease}
+.modal-bg.open .modal-box{transform:scale(1)}
+.modal-ico{width:48px;height:48px;border-radius:50%;background:rgba(239,68,68,.12);display:flex;align-items:center;justify-content:center;color:#ef4444;margin-bottom:1.25rem;font-size:1.3rem}
+.modal-box h3{font-size:1.2rem;margin-bottom:.5rem}
+.modal-box p{color:var(--muted);font-size:.875rem;margin-bottom:1.75rem}
+.modal-actions{display:flex;justify-content:flex-end;gap:.75rem}
+
+/* ── TOAST ───────────────────────────────────── */
+#toast{position:fixed;bottom:2.5rem;left:50%;transform:translateX(-50%) translateY(4rem);z-index:9000;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:.7rem 1.2rem;font-size:.825rem;font-weight:500;box-shadow:var(--shadow);display:flex;align-items:center;gap:.5rem;opacity:0;pointer-events:none;transition:transform .3s ease,opacity .3s ease;white-space:nowrap}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+#toast.t-success{border-left:3px solid #22c55e}
+#toast.t-error{border-left:3px solid #ef4444}
+
+/* ── BUTTONS ─────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.6rem 1.35rem;border-radius:6px;font-size:.85rem;font-weight:600;cursor:pointer;border:1.5px solid transparent;transition:background var(--t),color var(--t),border-color var(--t),transform var(--t),box-shadow var(--t);position:relative;overflow:hidden;text-decoration:none}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--gold);color:#111;border-color:var(--gold)}
+.btn-primary:hover{background:var(--gold-lt);border-color:var(--gold-lt);box-shadow:0 4px 14px rgba(201,168,76,.4)}
+.btn-outline{background:transparent;color:var(--text);border-color:#777}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.btn-danger{background:#ef4444;color:#fff;border-color:#ef4444}
+.btn-danger:hover{background:#dc2626}
+.btn-sm{padding:.38rem .9rem;font-size:.78rem}
+
+/* Ripple */
+.btn .ripple,.btn-gold .ripple,.btn-ghost .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.25);transform:scale(0);animation:rpl .5s linear;pointer-events:none}
+@keyframes rpl{to{transform:scale(4);opacity:0}}
+
+/* ── FOOTER ──────────────────────────────────── */
+footer{background:var(--bg-alt);border-top:1px solid var(--border-s);padding:3.5rem 0 1.5rem}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:2.5rem;margin-bottom:2.5rem}
+.footer-brand-name{font-family:var(--font-h);font-size:1.2rem;font-weight:700;letter-spacing:.04em;margin-bottom:.2rem}
+.footer-brand-tag{font-size:.78rem;color:var(--gold);margin-bottom:.75rem}
+.footer-brand-desc{font-size:.8rem;color:var(--muted);line-height:1.65}
+.footer-col-title{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.875rem}
+.footer-links{display:flex;flex-direction:column;gap:.4rem}
+.footer-links a{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color var(--t)}
+.footer-links a:hover{color:var(--gold)}
+.footer-links li.active a{color:var(--gold)}
+.fci{display:flex;align-items:flex-start;gap:.65rem;margin-bottom:.75rem}
+.fci-icon{color:var(--gold);flex-shrink:0;margin-top:2px}
+.fci-text{font-size:.8rem;color:var(--muted);line-height:1.5}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;padding-top:1.5rem;border-top:1px solid var(--border-s);font-size:.78rem;color:var(--muted)}
+
+/* ── PRINT ───────────────────────────────────── */
+@media print{
+  .site-nav,.ticker,#scroll-bar,#cookie-bar,.float-btn,#back-top,#page-loader,.modal-bg,#toast,#search-results,.mobile-overlay{display:none!important}
+  body{font-size:11pt;color:#000!important;background:#fff!important}
+  a[href]::after{content:" (" attr(href) ")";font-size:8pt;color:#666}
+  a[href^="#"]::after,a[href^="javascript:"]::after{content:""}
+  h1,h2,h3{page-break-after:avoid}
+  .svc-card,.adviser-card{break-inside:avoid;border:1px solid #ccc!important}
+  @page{margin:2cm}
+}
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media(max-width:1024px){
+  .leader-inner{grid-template-columns:260px 1fr;gap:2.5rem}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links,.header-search{display:none}
+  .nav-burger{display:flex}
+  .hero h1{font-size:2.4rem}
+  .hero-panel{display:none}
+  .about{grid-template-columns:1fr}
+  .leader-inner{grid-template-columns:1fr}
+  .leader-photo{max-width:280px}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .newsletter-wrap{padding:2rem}
+  .nl-form{flex-direction:column}
+}
+@media(max-width:480px){
+  :root{--header-h:64px}
+  .hero-btns{flex-direction:column}
+  .footer-top{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
+  #cookie-bar{flex-direction:column}
+  .modal-actions{flex-direction:column}
+}
+</style>
 </head>
 <body>
 
-  <!-- Page Loader -->
-  <div id="page-loader" aria-hidden="true">
-    <div class="loader-ring"></div>
-  </div>
+<!-- Loader -->
+<div id="page-loader" aria-hidden="true"><div class="loader-ring"></div></div>
 
-  <!-- Scroll Progress -->
-  <div id="scroll-progress" role="progressbar" aria-hidden="true"></div>
+<!-- Scroll progress -->
+<div id="scroll-bar" role="progressbar" aria-hidden="true" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 
-  <!-- Skip to Content -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+<!-- Skip link -->
+<a href="#main" class="skip-link">Skip to main content</a>
 
-  <!-- ===== HEADER ===== -->
-  <header class="site-header" role="banner">
-    <div class="header-inner">
-      <a href="/" class="logo">Qawwam<span>Empire</span></a>
-
-      <nav class="nav" aria-label="Primary navigation">
-        <ul class="nav-links">
-          <li><a href="/" aria-current="page">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <!-- Search -->
-        <div class="header-search" role="search">
-          <label for="search-input" class="sr-only">Search the site</label>
-          <input type="search" id="search-input" placeholder="Search…" autocomplete="off" aria-label="Search site content" />
-          <button aria-label="Submit search">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          </button>
-        </div>
-
-        <!-- Dark Mode -->
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-          <span class="icon-moon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          </span>
-          <span class="icon-sun">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-          </span>
-        </button>
-
-        <!-- CTA -->
-        <a href="#contact" class="btn btn-primary btn-sm">Get Started</a>
-
-        <!-- Hamburger -->
-        <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+<!-- ═══ HEADER ═══════════════════════════════ -->
+<nav class="site-nav" id="site-nav" role="banner">
+  <div class="nav-inner">
+    <a href="/" aria-label="Qawwam Empire home">
+      <div class="nav-logo"><img src="https://qawwamempire.com/logo.png" alt="Qawwam Empire" onerror="this.style.display='none';this.nextSibling.style.display='block'"/><span style="display:none;font-family:var(--font-h);font-size:1.2rem;font-weight:700;color:var(--text)">Qawwam<span style="color:var(--gold)">Empire</span></span></div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="/" aria-current="page">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="services.html">Our Services</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="header-search" role="search">
+        <label for="search-in" class="sr-only">Search site</label>
+        <input type="search" id="search-in" placeholder="Search…" autocomplete="off" aria-label="Search"/>
+        <button class="header-search-btn" id="search-submit-btn" aria-label="Submit search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         </button>
       </div>
-    </div>
-  </header>
-
-  <!-- Search Results Overlay -->
-  <div id="search-results" class="search-results" role="region" aria-label="Search results" aria-live="polite">
-    <div class="search-results-inner"></div>
-  </div>
-
-  <!-- Mobile Nav -->
-  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-    <nav class="mobile-nav-panel">
-      <button id="mobile-nav-close" style="align-self:flex-end;margin-bottom:.5rem;color:var(--color-text-muted);padding:.25rem;" aria-label="Close menu">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <button class="theme-btn" id="theme-btn" aria-label="Toggle colour mode">
+        <span class="i-moon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        <span class="i-sun"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span>
       </button>
-      <a href="/">Home</a>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#blog">Blog</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-      <div style="margin-top:1rem">
-        <label for="mobile-search" class="sr-only">Search the site</label>
-        <div style="position:relative;display:flex;align-items:center">
-          <input type="search" id="mobile-search" placeholder="Search…" autocomplete="off"
-            style="width:100%;padding:.6rem 2.5rem .6rem 1rem;border:1.5px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-bg-alt);color:var(--color-text);font-size:.9rem;outline:none;"
-            oninput="if(window.renderSearch)renderSearch(this.value);document.getElementById('search-input')&&(document.getElementById('search-input').value=this.value);" />
-          <span style="position:absolute;right:.75rem;color:var(--color-text-muted);" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          </span>
-        </div>
-      </div>
-      <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--color-border)">
-        <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Get Started</a>
-      </div>
-    </nav>
-  </div>
-
-  <!-- ===== MAIN ===== -->
-  <main id="main-content">
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-content fade-in">
-          <div class="hero-label">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-            Trusted by ambitious builders
-          </div>
-          <h1>Build an Empire,<br /><span>Not Just a Business</span></h1>
-          <p class="hero-desc">
-            Qawwam Empire delivers strategy, consulting and execution frameworks for leaders who refuse to settle. From early-stage startups to scaling enterprises.
-          </p>
-          <div class="hero-actions">
-            <a href="#services" class="btn btn-primary btn-lg">Explore Services</a>
-            <a href="#about" class="btn btn-outline btn-lg">Our Story</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- STATS -->
-    <section class="section-sm" style="background:var(--color-bg-alt)">
-      <div class="container">
-        <div class="stats-grid fade-in">
-          <div class="stat-item">
-            <h3><span data-target="200" data-suffix="+">0+</span></h3>
-            <p>Clients Served</p>
-          </div>
-          <div class="stat-item">
-            <h3><span data-target="95" data-suffix="%">0%</span></h3>
-            <p>Satisfaction Rate</p>
-          </div>
-          <div class="stat-item">
-            <h3><span data-target="7" data-suffix="yrs">0yrs</span></h3>
-            <p>In Business</p>
-          </div>
-          <div class="stat-item">
-            <h3><span data-target="50" data-suffix="M+">0M+</span></h3>
-            <p>Revenue Generated</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="section" id="about">
-      <div class="container">
-        <div class="fade-in">
-          <span class="badge badge-gold">About Us</span>
-          <h2 class="section-title" style="margin-top:.75rem">We Build from Purpose</h2>
-          <p class="section-sub">Qawwam means "one who establishes and maintains." That ethos runs through everything we do — sustainable systems, not quick wins.</p>
-        </div>
-        <div class="grid-2 fade-in">
-          <div class="card">
-            <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3>Principled Strategy</h3>
-            <p>Every engagement begins with understanding your north star — and then building the architecture to get there with integrity.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <h3>Elite Team</h3>
-            <p>Our consultants come from Fortune 500s, fast-scaling startups and high-growth agencies. Deep expertise, no juniors on your project.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </div>
-            <h3>Measurable Results</h3>
-            <p>We attach KPIs to every deliverable. No ambiguous consulting decks — you get clear before/after metrics and accountability.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <h3>Long-Term Vision</h3>
-            <p>We build partnerships, not transactions. Our clients return because we see around corners they haven't turned yet.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- SERVICES -->
-    <section class="section" id="services">
-      <div class="container">
-        <div class="fade-in">
-          <span class="badge badge-gold">Services</span>
-          <h2 class="section-title" style="margin-top:.75rem">What We Deliver</h2>
-          <p class="section-sub">End-to-end solutions across strategy, technology and growth — designed for organizations that move fast without breaking things.</p>
-        </div>
-        <div class="grid-3 fade-in">
-          <div class="card">
-            <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            </div>
-            <h3>Business Strategy</h3>
-            <p>Market positioning, competitive moats, and growth roadmaps that hold up under real-world pressure.</p>
-            <a href="#contact" class="btn btn-ghost btn-sm" style="margin-top:1rem;padding-left:0">Learn more →</a>
-          </div>
-          <div class="card">
-            <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            </div>
-            <h3>Tech Consulting</h3>
-            <p>Architecture reviews, performance audits, and engineering team structuring for scalable products.</p>
-            <a href="#contact" class="btn btn-ghost btn-sm" style="margin-top:1rem;padding-left:0">Learn more →</a>
-          </div>
-          <div class="card">
-            <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            </div>
-            <h3>Brand & Content</h3>
-            <p>Positioning, messaging frameworks and content systems that compound over time and build authority.</p>
-            <a href="#contact" class="btn btn-ghost btn-sm" style="margin-top:1rem;padding-left:0">Learn more →</a>
-          </div>
-          <div class="card">
-            <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </div>
-            <h3>Revenue Operations</h3>
-            <p>Sales processes, pipeline design and CRM architectures that shorten cycles and increase ACV.</p>
-            <a href="#contact" class="btn btn-ghost btn-sm" style="margin-top:1rem;padding-left:0">Learn more →</a>
-          </div>
-          <div class="card">
-            <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
-            </div>
-            <h3>Growth Engineering</h3>
-            <p>Data-driven acquisition, activation and retention systems built for durable, defensible growth.</p>
-            <a href="#contact" class="btn btn-ghost btn-sm" style="margin-top:1rem;padding-left:0">Learn more →</a>
-          </div>
-          <div class="card">
-            <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-            </div>
-            <h3>Training & Workshops</h3>
-            <p>Immersive programs for leadership teams and high-potential individuals ready to level up fast.</p>
-            <a href="#contact" class="btn btn-ghost btn-sm" style="margin-top:1rem;padding-left:0">Learn more →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- BLOG -->
-    <section class="section" id="blog">
-      <div class="container">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;" class="fade-in">
-          <div>
-            <span class="badge badge-gold">Blog</span>
-            <h2 class="section-title" style="margin-top:.75rem">Insights & Resources</h2>
-          </div>
-          <a href="#blog" class="btn btn-outline btn-sm">View all posts</a>
-        </div>
-        <div class="grid-3 fade-in">
-
-          <article class="post-card">
-            <div class="post-card-img">📊</div>
-            <div class="post-card-body">
-              <div class="post-meta">
-                <span class="badge badge-gold">Engineering</span>
-                <span>8 min read</span>
-              </div>
-              <h3><a href="blog/performance.html">Web Performance Deep Dive: N+1s, Re-renders & Dead Code</a></h3>
-              <p>A complete engineering breakdown of the 19-item performance checklist — with code, benchmarks and priority rankings.</p>
-              <div class="last-updated">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span data-updated="2026-09-17T10:00:00Z">Loading…</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="post-card">
-            <div class="post-card-img">🧭</div>
-            <div class="post-card-body">
-              <div class="post-meta">
-                <span class="badge badge-gold">Strategy</span>
-                <span>5 min read</span>
-              </div>
-              <h3><a href="#">The Qawwam Framework for Sustainable Growth</a></h3>
-              <p>How to build systems that outlast trends, withstand market shocks and compound over years — not quarters.</p>
-              <div class="last-updated">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span data-updated="2026-09-10T08:30:00Z">Loading…</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="post-card">
-            <div class="post-card-img">💡</div>
-            <div class="post-card-body">
-              <div class="post-meta">
-                <span class="badge badge-gold">Leadership</span>
-                <span>6 min read</span>
-              </div>
-              <h3><a href="#">Building High-Trust Teams in a Remote-First World</a></h3>
-              <p>Trust isn't a soft metric. Here's the playbook for building it deliberately, measuring it, and repairing it when it breaks.</p>
-              <div class="last-updated">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span data-updated="2026-09-05T14:00:00Z">Loading…</span>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- TESTIMONIALS -->
-    <section class="section" style="background:var(--color-bg-alt)">
-      <div class="container">
-        <div class="fade-in text-center" style="margin-bottom:2.5rem">
-          <span class="badge badge-gold">Testimonials</span>
-          <h2 class="section-title" style="margin-top:.75rem">What Our Clients Say</h2>
-        </div>
-        <div class="grid-3 fade-in">
-          <div class="testimonial-card">
-            <p class="testimonial-text">"Qawwam Empire reshaped how we think about growth. The frameworks they installed are still running two years later. Exceptional ROI."</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">AR</div>
-              <div>
-                <div class="author-name">Ahmed Rashid</div>
-                <div class="author-role">CEO, NovaTech Solutions</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <p class="testimonial-text">"They didn't just deliver a strategy deck — they stayed in the trenches with us until it was running. That's rare in consulting."</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">SM</div>
-              <div>
-                <div class="author-name">Sara Malik</div>
-                <div class="author-role">Founder, Ascend Brands</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <p class="testimonial-text">"The tech audit alone saved us six months of the wrong architecture. Brutal honesty delivered with genuine care. Highly recommend."</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">YK</div>
-              <div>
-                <div class="author-name">Yusuf Khan</div>
-                <div class="author-role">CTO, Meridian Digital</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="container" style="max-width:760px">
-        <div class="fade-in text-center" style="margin-bottom:2.5rem">
-          <span class="badge badge-gold">FAQ</span>
-          <h2 class="section-title" style="margin-top:.75rem">Common Questions</h2>
-          <p class="section-sub mx-auto">Everything you need to know before getting started.</p>
-        </div>
-        <div class="fade-in">
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false" aria-controls="faq-a1">
-              What industries do you work with?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-a1" role="region">
-              <div class="faq-answer-inner">
-                We work across SaaS, e-commerce, professional services, media and education. Our frameworks are industry-agnostic — we adapt the principles to your specific context, competition and constraints.
-              </div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false" aria-controls="faq-a2">
-              How long does an engagement typically last?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-a2" role="region">
-              <div class="faq-answer-inner">
-                Diagnostic sprints run 2–4 weeks. Full strategy + execution engagements typically span 3–6 months. We also offer ongoing advisory retainers for clients who want continuous strategic guidance.
-              </div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false" aria-controls="faq-a3">
-              Do you work with early-stage startups?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-a3" role="region">
-              <div class="faq-answer-inner">
-                Yes — with the right fit. We look for founders with clarity of vision, willingness to execute, and at least early proof of demand. If you're pre-product, we recommend our founder workshop before a full engagement.
-              </div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false" aria-controls="faq-a4">
-              What does pricing look like?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-a4" role="region">
-              <div class="faq-answer-inner">
-                We price based on scope and value created — not hourly rates. Diagnostic sprints start at $4,500. Full engagements are scoped after an initial discovery call. We're selective, not cheap, but clients consistently report 10x+ returns.
-              </div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false" aria-controls="faq-a5">
-              How do I know if we're a good fit?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-a5" role="region">
-              <div class="faq-answer-inner">
-                Book a 30-minute discovery call. We'll ask hard questions and give you honest answers. If we're not the right fit, we'll tell you — and often refer you to someone who is.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- NEWSLETTER -->
-    <section class="section" id="newsletter">
-      <div class="container">
-        <div class="newsletter fade-in">
-          <span class="badge" style="background:rgba(201,168,76,.2);color:var(--color-accent);margin-bottom:1rem;display:inline-block;">Newsletter</span>
-          <h2>Weekly Insights, Zero Noise</h2>
-          <p>Strategy, technology and leadership — curated every week for ambitious operators.</p>
-          <form id="newsletter-form" class="newsletter-form" novalidate>
-            <input type="email" placeholder="your@email.com" required aria-label="Email address" />
-            <button type="submit" class="btn btn-primary">Subscribe →</button>
-          </form>
-          <div id="newsletter-success" class="newsletter-success" role="alert">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            You're in! First issue lands this Sunday.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- CONTACT -->
-    <section class="section" id="contact">
-      <div class="container" style="max-width:680px">
-        <div class="fade-in text-center" style="margin-bottom:2.5rem">
-          <span class="badge badge-gold">Contact</span>
-          <h2 class="section-title" style="margin-top:.75rem">Start the Conversation</h2>
-          <p class="section-sub mx-auto">No forms lost in the void. We read every message and respond within one business day.</p>
-        </div>
-        <form class="fade-in" id="contact-form" novalidate>
-          <div class="grid-2">
-            <div class="form-group">
-              <label class="form-label" for="name">Full Name</label>
-              <input class="form-input" type="text" id="name" placeholder="Omar Al-Rashid" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="email">Email</label>
-              <input class="form-input" type="email" id="email" placeholder="you@company.com" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="company">Company (optional)</label>
-            <input class="form-input" type="text" id="company" placeholder="Acme Corp" />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="message">Message</label>
-            <textarea class="form-input" id="message" rows="4" placeholder="Tell us about your goals…" required></textarea>
-          </div>
-
-          <!-- Password field demo -->
-          <div class="form-group">
-            <label class="form-label" for="portal-password">Portal Password <span style="font-weight:400;color:var(--color-text-muted)">(existing clients)</span></label>
-            <div class="input-group">
-              <input type="password" id="portal-password" class="form-input" placeholder="••••••••" autocomplete="current-password" />
-              <button type="button" class="pw-toggle" aria-label="Show password">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              </button>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
-            <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
-            <!-- Confirmation modal trigger demo -->
-            <button type="button" class="btn btn-danger btn-sm" data-confirm="modal-delete">Delete Account</button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="logo">Qawwam<span>Empire</span></div>
-          <p>Strategy, consulting and execution for ambitious businesses.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Resources</h4>
-          <ul>
-            <li><a href="blog/performance.html">Performance Guide</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#">Case Studies</a></li>
-            <li><a href="#">Newsletter</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Cookie Policy</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Qawwam Empire. All rights reserved.</span>
-        <div style="display:flex;gap:1rem">
-          <a href="https://twitter.com/qawwamempire" target="_blank" rel="noopener" aria-label="Twitter">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="https://linkedin.com/company/qawwamempire" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ===== FLOATING CONTACT ===== -->
-  <a href="#contact" class="float-contact" aria-label="Contact us">
-    <span class="float-contact-label">Contact us</span>
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-  </a>
-
-  <!-- ===== BACK TO TOP ===== -->
-  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
-  </button>
-
-  <!-- ===== COOKIE BANNER ===== -->
-  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
-    <p>We use cookies to improve your experience. <a href="#">Learn more</a>.</p>
-    <div class="cookie-banner-actions">
-      <button id="cookie-decline" class="btn btn-outline btn-sm">Decline</button>
-      <button id="cookie-accept" class="btn btn-primary btn-sm">Accept</button>
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
   </div>
+</nav>
 
-  <!-- ===== CONFIRMATION MODAL ===== -->
-  <div class="modal-overlay" id="modal-delete" role="dialog" aria-modal="true" aria-labelledby="modal-delete-title">
-    <div class="modal">
-      <div class="modal-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+<!-- Search results -->
+<div id="search-results" role="region" aria-label="Search results" aria-live="polite">
+  <div class="sr-inner" id="sr-inner"></div>
+</div>
+
+<!-- Mobile nav -->
+<div class="mobile-overlay" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation">
+  <nav class="mobile-panel" id="mobile-panel">
+    <button class="mobile-close-btn" id="mobile-close" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="mobile-search-wrap">
+      <label for="mobile-search" class="sr-only">Search</label>
+      <input type="search" id="mobile-search" placeholder="Search the site…" autocomplete="off"/>
+    </div>
+    <a href="/">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Our Services</a>
+    <a href="news.html">News</a>
+    <a href="contact.html">Contact Us</a>
+    <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border-s)">
+      <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">Contact Us</a>
+    </div>
+  </nav>
+</div>
+
+<!-- ═══ MAIN ══════════════════════════════════ -->
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-pattern" aria-hidden="true">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="ip" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse"><polygon points="60,8 72,40 104,28 82,52 104,72 72,68 60,100 48,68 16,72 38,52 16,28 48,40" fill="none" stroke="#C9A84C" stroke-width="0.7"/><polygon points="60,22 74,34 88,34 88,48 74,60 74,72 60,72 46,72 46,60 32,48 32,34 46,34" fill="none" stroke="#C9A84C" stroke-width="0.4" opacity="0.5"/><line x1="60" y1="30" x2="60" y2="90" stroke="#C9A84C" stroke-width="0.3" opacity="0.35"/><line x1="30" y1="60" x2="90" y2="60" stroke="#C9A84C" stroke-width="0.3" opacity="0.35"/><circle cx="60" cy="60" r="3" fill="none" stroke="#C9A84C" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#ip)"/></svg>
+  </div>
+  <div class="hero-grad" aria-hidden="true"></div>
+  <div class="hero-grad-b" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow reveal">
+      <div class="hero-line"></div>
+      <span class="hero-eye-text">Corporate Solutions &amp; Digital Advisory</span>
+    </div>
+    <h1 class="reveal">Principled<br><span class="accent">Solutions.</span><br>Sustainable Growth.</h1>
+    <p class="hero-sub reveal">Qawwam Empire Sdn Bhd delivers expert advisory in blockchain, digital assets and cybersecurity governance — built on integrity, compliance and professional excellence.</p>
+    <div class="hero-btns reveal">
+      <a href="services.html" class="btn-gold">Discover Our Services</a>
+      <a href="contact.html" class="btn-ghost">Contact Us →</a>
+    </div>
+  </div>
+  <div class="hero-panel reveal" aria-label="Key statistics">
+    <div class="hero-panel-top-lbl">Clients Served</div>
+    <div class="hero-panel-top-val">10,000+</div>
+    <div class="hero-panel-items">
+      <div class="hero-panel-item">
+        <div class="hero-panel-dot"></div>
+        <div class="hero-panel-text">Shariah-compliant</div>
       </div>
-      <h3 id="modal-delete-title">Delete Account?</h3>
-      <p>This action is permanent and cannot be undone. All your data, projects and history will be erased immediately.</p>
-      <div class="modal-actions">
-        <button class="btn btn-outline modal-cancel">Cancel</button>
-        <button class="btn btn-danger modal-confirm" data-action="delete">Yes, Delete</button>
+      <div class="hero-panel-item">
+        <div class="hero-panel-dot" style="animation-delay:.6s"></div>
+        <div class="hero-panel-text">HRDC-Approved Training Modules</div>
       </div>
     </div>
   </div>
+</section>
 
-  <script src="js/main.js"></script>
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">Bandar Baru Bangi<span class="ticker-sep"></span></span>
+    <span class="ticker-item">Blockchain Advisory<span class="ticker-sep"></span></span>
+    <span class="ticker-item">Cybersecurity Governance<span class="ticker-sep"></span></span>
+    <span class="ticker-item">10,000+ Clients<span class="ticker-sep"></span></span>
+    <span class="ticker-item">HRDC-Approved Training Modules<span class="ticker-sep"></span></span>
+    <span class="ticker-item">Shariah-compliant<span class="ticker-sep"></span></span>
+    <span class="ticker-item">SafeFi+ Platform<span class="ticker-sep"></span></span>
+    <span class="ticker-item">Bandar Baru Bangi<span class="ticker-sep"></span></span>
+    <span class="ticker-item">Blockchain Advisory<span class="ticker-sep"></span></span>
+    <span class="ticker-item">Cybersecurity Governance<span class="ticker-sep"></span></span>
+    <span class="ticker-item">10,000+ Clients<span class="ticker-sep"></span></span>
+    <span class="ticker-item">HRDC-Approved Training Modules<span class="ticker-sep"></span></span>
+    <span class="ticker-item">Shariah-compliant<span class="ticker-sep"></span></span>
+    <span class="ticker-item">SafeFi+ Platform<span class="ticker-sep"></span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about" aria-labelledby="about-h">
+  <div class="container">
+    <div class="about">
+      <div>
+        <div class="sec-label reveal"><div class="sec-label-line"></div><span class="sec-label-text">About Us</span></div>
+        <h2 class="sec-title reveal" id="about-h">Governance with Purpose</h2>
+        <p class="about-text reveal">Founded in 2022, Qawwam Empire Sdn Bhd (QESB) was established with a clear purpose — to create a professional services organisation that is not only operationally excellent, but ethically grounded in every dimension.</p>
+        <p class="about-text reveal">We began as a corporate advisory and consultancy firm, building our foundations on governance, compliance and organisational development. This early focus gave us a distinct advantage: a deep, institutional understanding of how well-governed organisations operate — an understanding that now underpins everything we do.</p>
+        <a href="about.html" class="btn-gold reveal" style="margin-top:.5rem">Read More →</a>
+      </div>
+      <div class="about-photo-frame reveal">
+        <img class="about-photo" src="https://qawwamempire.com/team.jpg" alt="QESB Leadership Team" loading="lazy" onerror="this.style.background='var(--bg-card)';this.style.minHeight='240px'"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADER STATEMENT -->
+<section class="section leader" id="leader" aria-labelledby="leader-h">
+  <div class="container">
+    <div class="leader-inner">
+      <div class="reveal">
+        <img class="leader-photo" src="https://qawwamempire.com/chairman.jpg" alt="Dato' Ts. Dr. Hj Amirudin Abdul Wahab — Chairman, Qawwam Empire Sdn Bhd" loading="lazy" onerror="this.style.background='var(--bg-card)';this.style.minHeight='360px'"/>
+      </div>
+      <div class="reveal">
+        <div class="sec-label"><div class="sec-label-line"></div><span class="sec-label-text">Leader Statement</span></div>
+        <h2 class="sec-title" id="leader-h" style="margin-top:1rem">A Commitment to Principled Leadership in the Digital Age</h2>
+        <div class="quote-mark" aria-hidden="true">"</div>
+        <p class="quote-text">We have the talent, the maturing digital infrastructure, and the entrepreneurial spirit. What we need now is the courage to move forward, the wisdom to learn from the world's best, and the close collaboration between industry and academia to turn this vision into reality.</p>
+        <div class="leader-name">Dato' Ts. Dr. Hj Amirudin Abdul Wahab</div>
+        <div class="leader-pos">Chairman, Qawwam Empire Sdn Bhd</div>
+        <div class="leader-pos">Special Advisor (Cybersecurity &amp; Digital Technology) to DYTM Raja Muda Selangor</div>
+        <div class="leader-divider"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services" aria-labelledby="svc-h">
+  <div class="container">
+    <div class="reveal"><div class="sec-label"><div class="sec-label-line"></div><span class="sec-label-text">What We Do</span></div></div>
+    <h2 class="sec-title reveal" id="svc-h">Strategic Solutions for Sustainable Growth</h2>
+    <p class="sec-sub reveal">Professional services built on governance, integrity and deep expertise in the digital economy.</p>
+    <div class="svc-grid">
+      <!-- Service 01 -->
+      <article class="svc-card reveal d1">
+        <div class="svc-bar"></div>
+        <div class="svc-body">
+          <div class="svc-icon" aria-hidden="true">
+            <svg width="56" height="56" viewBox="0 0 60 60" fill="none"><rect x="6" y="22" width="48" height="32" rx="4" stroke="#002B5C" stroke-width="1.8"/><path d="M21 22V17C21 14.8 22.8 13 25 13H35C37.2 13 39 14.8 39 17V22" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/><line x1="6" y1="36" x2="54" y2="36" stroke="#002B5C" stroke-width="1.4" opacity="0.35"/><rect x="25" y="32" width="10" height="8" rx="2" stroke="#C9A84C" stroke-width="1.6"/><circle cx="30" cy="36" r="1.5" fill="#C9A84C"/></svg>
+          </div>
+          <div class="svc-num">SERVICE 01</div>
+          <div class="svc-title">Consultant &amp; Advisory</div>
+          <p class="svc-desc">Expert advisory for organisations seeking to understand, adopt or govern blockchain technology and digital asset ecosystems — with regulatory confidence.</p>
+          <p class="svc-desc">We provide end-to-end advisory covering strategy, governance, risk, compliance and ecosystem integration to help you navigate the evolving digital landscape with confidence.</p>
+        </div>
+      </article>
+      <!-- Service 02 -->
+      <article class="svc-card reveal d2">
+        <div class="svc-bar"></div>
+        <div class="svc-body">
+          <div class="svc-icon" aria-hidden="true">
+            <svg width="56" height="56" viewBox="0 0 60 60" fill="none"><polygon points="30,10 56,22 30,34 4,22" stroke="#002B5C" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 28V42C16 45 22.5 48 30 48C37.5 48 44 45 44 42V28" stroke="#002B5C" stroke-width="1.8" stroke-linecap="round"/><line x1="56" y1="22" x2="56" y2="36" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/><circle cx="56" cy="38" r="2.5" stroke="#C9A84C" stroke-width="1.5"/></svg>
+          </div>
+          <div class="svc-num">SERVICE 02</div>
+          <div class="svc-title">Training &amp; Development</div>
+          <p class="svc-desc">Professionally designed blockchain and digital asset programmes for corporates and universities.</p>
+          <span class="svc-badge">HRDC-Approved Training Modules</span>
+        </div>
+      </article>
+      <!-- Service 03 -->
+      <article class="svc-card reveal d3">
+        <div class="svc-bar"></div>
+        <div class="svc-body">
+          <div class="svc-icon" aria-hidden="true">
+            <svg width="56" height="56" viewBox="0 0 60 60" fill="none"><rect x="5" y="10" width="50" height="36" rx="3" stroke="#002B5C" stroke-width="1.8"/><line x1="5" y1="20" x2="55" y2="20" stroke="#002B5C" stroke-width="1.2" opacity="0.3"/><polyline points="11,38 20,33 30,27 38,24 51,18" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="51" cy="18" r="3.5" stroke="#C9A84C" stroke-width="1.8"/></svg>
+          </div>
+          <div class="svc-num">SERVICE 03</div>
+          <div class="svc-title">SafeFi+ — Blockchain &amp; Digital Asset Platform</div>
+          <p class="svc-desc">QESB's fintech product in the blockchain and digital asset space — a Shariah-compliant digital finance platform for retail and institutional clients.</p>
+          <a href="https://safefiplus.com/" target="_blank" rel="noopener noreferrer" class="btn-gold" style="margin-top:.75rem;font-size:.78rem">VISIT SAFEFI+ →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ADVISERS -->
+<section class="section" style="background:var(--bg-alt);border-top:1px solid var(--border-s)" id="advisers" aria-labelledby="adv-h">
+  <div class="container">
+    <div class="text-center">
+      <div class="sec-label reveal" style="justify-content:center"><div class="sec-label-line"></div><span class="sec-label-text">Trusted Guidance</span><div class="sec-label-line"></div></div>
+      <h2 class="sec-title reveal" id="adv-h" style="text-align:center;margin-top:.75rem">Our Strategic Advisers</h2>
+      <p class="advisers-sub reveal" style="margin:0 auto;text-align:center">We work closely with distinguished advisory partners who share our commitment to Shariah compliance, governance and ethical excellence.</p>
+    </div>
+    <div class="advisers-grid">
+      <div class="adviser-card reveal d1">
+        <div class="adviser-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="adviser-label">Shariah Adviser</div>
+        <div class="adviser-divider"></div>
+        <div class="adviser-content"><img src="https://qawwamempire.com/shariah-adviser.png" alt="Shariah Adviser" style="max-width:120px;max-height:40px;object-fit:contain;margin:0 auto" onerror="this.style.display='none'"/></div>
+      </div>
+      <div class="adviser-card reveal d2">
+        <div class="adviser-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 1l3 6 6 .75-4.5 4.5 1.05 6.75L12 16l-5.55 3L7.5 12.25 3 7.75 9 7z"/></svg></div>
+        <div class="adviser-label">Legal Advisor</div>
+        <div class="adviser-divider"></div>
+        <div class="adviser-name">Jason Singh, Fahmi <span>&amp;</span> Rakan-Rakan</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="section" id="partners" aria-labelledby="part-h">
+  <div class="container">
+    <div class="text-center">
+      <div class="sec-label reveal" style="justify-content:center"><div class="sec-label-line"></div><span class="sec-label-text">Trusted Alliances</span><div class="sec-label-line"></div></div>
+      <h2 class="sec-title reveal" id="part-h" style="text-align:center;margin-top:.75rem">Our Strategic Partners</h2>
+      <p class="reveal" style="color:var(--muted);text-align:center;margin:.5rem auto 0;max-width:480px">Working alongside industry leaders to deliver integrated, reliable solutions for our clients.</p>
+    </div>
+    <div class="partners-row">
+      <div class="partner-cell reveal d1"><img src="https://qawwamempire.com/partner-mj.png" alt="MJ Global" onerror="this.style.display='none';this.nextSibling.style.display='block'"/><span style="display:none">MJ Global</span></div>
+      <div class="partner-cell reveal d2"><img src="https://qawwamempire.com/partner-toyyib.png" alt="ToyyibPay" onerror="this.style.display='none';this.nextSibling.style.display='block'"/><span style="display:none">ToyyibPay</span></div>
+      <div class="partner-cell reveal d3"><img src="https://qawwamempire.com/partner-komani.png" alt="Komani" onerror="this.style.display='none';this.nextSibling.style.display='block'"/><span style="display:none">Komani</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--bg-alt);border-top:1px solid var(--border-s)" id="faq" aria-labelledby="faq-h">
+  <div class="container">
+    <div class="text-center">
+      <div class="sec-label reveal" style="justify-content:center"><div class="sec-label-line"></div><span class="sec-label-text">FAQ</span><div class="sec-label-line"></div></div>
+      <h2 class="sec-title reveal" id="faq-h" style="text-align:center;margin-top:.75rem">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a1">What services does Qawwam Empire Sdn Bhd provide?<span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-ans" id="faq-a1" role="region"><div class="faq-ans-inner">QESB provides three core services: (1) Consultant &amp; Advisory for blockchain and digital asset governance, (2) Training &amp; Development with HRDC-approved programmes for corporates and universities, and (3) the SafeFi+ platform — a Shariah-compliant digital finance solution for retail and institutional clients.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a2">Is Qawwam Empire Shariah-compliant?<span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-ans" id="faq-a2" role="region"><div class="faq-ans-inner">Yes. Shariah compliance is foundational to everything we do. We work closely with our Shariah Adviser to ensure all advisory, training and platform products meet rigorous Islamic finance and ethical governance standards.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a3">Are your training modules HRDC-approved?<span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-ans" id="faq-a3" role="region"><div class="faq-ans-inner">Yes. Our blockchain and digital asset training programmes are HRDC (Human Resource Development Corporation) approved, meaning Malaysian employers can claim training grants for eligible employees who enrol in our courses.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a4">Where is Qawwam Empire located?<span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-ans" id="faq-a4" role="region"><div class="faq-ans-inner">We are based at 85A, Jalan 8/1, Seksyen 8, 43650 Bandar Baru Bangi, Selangor. Our office is open Monday to Friday, 9:00 AM – 6:00 PM. You can reach us at info@qawwamempire.com or +603-8928 0612.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a5">What is SafeFi+?<span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-ans" id="faq-a5" role="region"><div class="faq-ans-inner">SafeFi+ is QESB's proprietary blockchain and digital asset platform — designed to be Shariah-compliant from the ground up. It serves both retail and institutional clients looking to engage with digital finance safely, transparently and within an ethical governance framework. Visit <a href="https://safefiplus.com/" target="_blank" rel="noopener">safefiplus.com</a> to learn more.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section" id="newsletter" aria-labelledby="nl-h">
+  <div class="container">
+    <div class="newsletter-wrap reveal">
+      <span style="display:inline-block;padding:.25rem .7rem;background:rgba(201,168,76,.12);border:1px solid var(--border);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:20px;margin-bottom:1rem">Newsletter</span>
+      <h2 id="nl-h">Stay Informed on Shariah-Compliant Digital Finance</h2>
+      <p>Advisory insights, regulatory updates and programme announcements — delivered to your inbox.</p>
+      <form id="nl-form" class="nl-form" novalidate>
+        <label for="nl-email" class="sr-only">Email address</label>
+        <input type="email" id="nl-email" placeholder="your@email.com" required autocomplete="email"/>
+        <button type="submit" class="btn-gold">Subscribe →</button>
+      </form>
+      <div id="nl-success" class="nl-success" role="alert">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        You're subscribed! Expect our next update shortly.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" style="background:var(--bg-alt);border-top:1px solid var(--border-s)" id="contact" aria-labelledby="contact-h">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:2.5rem">
+      <div class="sec-label"><div class="sec-label-line"></div><span class="sec-label-text">Get in Touch</span></div>
+      <h2 class="sec-title" id="contact-h" style="margin-top:.75rem">Contact Us</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="ci-item">
+          <div class="ci-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="ci-label">Address</div><div class="ci-val">85A, Jalan 8/1, Seksyen 8,<br>43650 Bandar Baru Bangi, Selangor</div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="ci-label">Email</div><div class="ci-val"><a href="mailto:info@qawwamempire.com">info@qawwamempire.com</a></div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-.95a2 2 0 0 1 2.11-.45c.907.339 1.855.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><div class="ci-label">Phone</div><div class="ci-val"><a href="tel:+60389280612">+603-8928 0612</a></div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="ci-label">Hours</div><div class="ci-val">Mon – Fri, 9:00 AM – 6:00 PM</div></div>
+        </div>
+      </div>
+      <form id="contact-form" class="reveal" novalidate>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="form-group">
+            <label class="form-label" for="cf-name">Full Name *</label>
+            <input class="form-input" type="text" id="cf-name" placeholder="Ahmad Faris" required autocomplete="name"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-email">Email *</label>
+            <input class="form-input" type="email" id="cf-email" placeholder="you@company.com" required autocomplete="email"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cf-org">Organisation</label>
+          <input class="form-input" type="text" id="cf-org" placeholder="Company Sdn Bhd" autocomplete="organization"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cf-msg">Message *</label>
+          <textarea class="form-input" id="cf-msg" rows="4" placeholder="Tell us about your enquiry…" required></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cf-pw">Client Portal Password <span style="font-weight:400;color:var(--muted)">(existing clients only)</span></label>
+          <div class="input-group">
+            <input class="form-input" type="password" id="cf-pw" placeholder="••••••••" autocomplete="current-password"/>
+            <button type="button" class="pw-eye" aria-label="Show password">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-top:.5rem">
+          <button type="submit" class="btn-gold">Send Message</button>
+          <button type="button" class="btn btn-danger btn-sm" data-confirm="modal-unsub">Unsubscribe</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ FOOTER ════════════════════════════════ -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">QAWWAM EMPIRE</div>
+        <div class="footer-brand-tag">Sdn Bhd &nbsp;·&nbsp; Principled Solutions. Sustainable Growth.</div>
+        <p class="footer-brand-desc">A Shariah-compliant corporate solutions company committed to ethical, transparent and professional services across Malaysia.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Our Services</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Our Platform</div>
+        <ul class="footer-links"><li><a href="https://safefiplus.com/" target="_blank" rel="noopener">SafeFi+ ↗</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="fci"><span class="fci-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="fci-text">85A, Jalan 8/1, Seksyen 8,<br>43650 Bandar Baru Bangi, Selangor</span></div>
+        <div class="fci"><span class="fci-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><span class="fci-text"><a href="mailto:info@qawwamempire.com" style="color:var(--muted)">info@qawwamempire.com</a></span></div>
+        <div class="fci"><span class="fci-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-.95a2 2 0 0 1 2.11-.45c.907.339 1.855.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span class="fci-text"><a href="tel:+60389280612" style="color:var(--muted)">+603-8928 0612</a></span></div>
+        <div class="fci"><span class="fci-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span class="fci-text">Mon – Fri, 9:00 AM – 6:00 PM</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Qawwam Empire Sdn Bhd. All Rights Reserved.</span>
+      <span style="font-size:.72rem;opacity:.6" data-updated="2026-09-18T15:08:23+08:00">Updated …</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ FLOATING ELEMENTS ═════════════════════ -->
+<a href="mailto:info@qawwamempire.com" class="float-btn" aria-label="Email Qawwam Empire">
+  <span class="float-tip">Contact us</span>
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+</a>
+
+<button id="back-top" aria-label="Back to top">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- Cookie banner -->
+<div id="cookie-bar" role="dialog" aria-label="Cookie consent" aria-live="polite">
+  <p>We use cookies to improve your experience on our site. <a href="#">Learn more</a>.</p>
+  <div class="cookie-btns">
+    <button id="cookie-decline" class="btn btn-outline btn-sm">Decline</button>
+    <button id="cookie-accept" class="btn btn-primary btn-sm">Accept</button>
+  </div>
+</div>
+
+<!-- Confirmation modal -->
+<div class="modal-bg" id="modal-unsub" role="dialog" aria-modal="true" aria-labelledby="modal-unsub-title">
+  <div class="modal-box">
+    <div class="modal-ico">⚠</div>
+    <h3 id="modal-unsub-title">Unsubscribe from updates?</h3>
+    <p>You will no longer receive advisory insights, regulatory updates or programme announcements from Qawwam Empire.</p>
+    <div class="modal-actions">
+      <button class="btn btn-outline modal-cancel">Cancel</button>
+      <button class="btn btn-danger modal-confirm" data-action="unsub">Yes, Unsubscribe</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- ═══ SCRIPTS ════════════════════════════════ -->
+<script>
+(function(){
+'use strict';
+
+const THEME_KEY='qe-theme';
+const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+/* helpers */
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function hl(str,q){const s=esc(str),sq=esc(q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');return s.replace(new RegExp('('+sq+')','gi'),'<mark>$1</mark>')}
+
+/* ── loader ── */
+const loader=document.getElementById('page-loader');
+window.addEventListener('load',()=>{if(loader){loader.classList.add('gone');setTimeout(()=>loader.remove(),500)}});
+
+/* ── theme ── */
+const themeBtn=document.getElementById('theme-btn');
+const root=document.documentElement;
+function setTheme(t){root.setAttribute('data-theme',t);try{localStorage.setItem(THEME_KEY,t)}catch(e){}}
+if(themeBtn)themeBtn.addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+
+/* ── scroll progress ── */
+const bar=document.getElementById('scroll-bar');
+function updateBar(){if(!bar)return;const d=document.documentElement.scrollHeight-window.innerHeight,p=d>0?window.scrollY/d*100:0;bar.style.width=p+'%';bar.setAttribute('aria-valuenow',Math.round(p))}
+window.addEventListener('scroll',updateBar,{passive:true});
+
+/* ── sticky nav shadow ── */
+const nav=document.getElementById('site-nav');
+function updateNav(){if(nav)nav.classList.toggle('scrolled',window.scrollY>20)}
+window.addEventListener('scroll',updateNav,{passive:true});
+
+/* ── back to top ── */
+const bt=document.getElementById('back-top');
+function updateBt(){if(bt)bt.classList.toggle('show',window.scrollY>400)}
+window.addEventListener('scroll',updateBt,{passive:true});
+if(bt)bt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ── mobile nav ── */
+const burger=document.getElementById('nav-burger');
+const mobileNav=document.getElementById('mobile-nav');
+const mobileClose=document.getElementById('mobile-close');
+let lastFocus=null;
+let trapH=null;
+
+function trapFocus(el){
+  const sel='a[href],button:not([disabled]),input,[tabindex]:not([tabindex="-1"])';
+  const els=[...el.querySelectorAll(sel)];
+  if(!els.length)return;
+  const f=els[0],l=els[els.length-1];
+  trapH=e=>{if(e.key!=='Tab')return;if(e.shiftKey){if(document.activeElement===f){e.preventDefault();l.focus()}}else{if(document.activeElement===l){e.preventDefault();f.focus()}}};
+  el.addEventListener('keydown',trapH);
+}
+function releaseTrap(){if(mobileNav&&trapH)mobileNav.removeEventListener('keydown',trapH);trapH=null}
+
+function openNav(){
+  if(!mobileNav||mobileNav.classList.contains('open'))return;
+  lastFocus=document.activeElement;
+  mobileNav.classList.add('open');
+  document.body.classList.add('no-scroll');
+  burger&&burger.setAttribute('aria-expanded','true');
+  const p=mobileNav.querySelector('button,a,input');
+  if(p)p.focus();
+  trapFocus(mobileNav);
+}
+function closeNav(){
+  if(!mobileNav)return;
+  mobileNav.classList.remove('open');
+  document.body.classList.remove('no-scroll');
+  burger&&burger.setAttribute('aria-expanded','false');
+  releaseTrap();
+  if(lastFocus)lastFocus.focus();
+}
+
+if(burger)burger.addEventListener('click',openNav);
+if(mobileClose)mobileClose.addEventListener('click',closeNav);
+if(mobileNav)mobileNav.addEventListener('click',e=>{if(e.target===mobileNav)closeNav()});
+
+/* ── search ── */
+const si=document.getElementById('search-in');
+const ms=document.getElementById('mobile-search');
+const sr=document.getElementById('search-results');
+const sbtn=document.getElementById('search-submit-btn');
+
+const pages=[
+  {title:'Home',url:'/',desc:'Welcome to Qawwam Empire Sdn Bhd',s:'Pages'},
+  {title:'About Us',url:'about.html',desc:'Our founding story, governance and purpose',s:'Pages'},
+  {title:'Our Services',url:'services.html',desc:'Consultant advisory, training and SafeFi+ platform',s:'Pages'},
+  {title:'News',url:'news.html',desc:'Latest updates and announcements',s:'Pages'},
+  {title:'Contact Us',url:'contact.html',desc:'Get in touch with our team in Bandar Baru Bangi',s:'Pages'},
+  {title:'SafeFi+ Platform',url:'https://safefiplus.com/',desc:'Shariah-compliant digital finance platform',s:'Platform'},
+  {title:'Consultant & Advisory',url:'services.html',desc:'Blockchain, digital assets and cybersecurity governance advisory',s:'Services'},
+  {title:'Training & Development',url:'services.html',desc:'HRDC-approved blockchain training programmes',s:'Services'},
+  {title:'FAQ',url:'#faq',desc:'Frequently asked questions about QESB',s:'Pages'},
+];
+
+function doSearch(q){
+  if(!sr||!q.trim()){sr&&sr.classList.remove('open');return}
+  const ql=q.toLowerCase();
+  const hits=pages.filter(p=>p.title.toLowerCase().includes(ql)||p.desc.toLowerCase().includes(ql));
+  const grp={};
+  hits.forEach(h=>{(grp[h.s]=grp[h.s]||[]).push(h)});
+  const inner=document.getElementById('sr-inner');
+  if(!inner)return;
+  if(!hits.length){inner.innerHTML='<p class="sr-empty">No results for "'+esc(q)+'"</p>'}
+  else{inner.innerHTML=Object.entries(grp).map(([sec,items])=>'<div class="sr-group"><h3>'+esc(sec)+'</h3><ul role="list">'+items.map(it=>'<li role="listitem"><a class="sr-item" href="'+it.url+'"><div><h4>'+hl(it.title,ql)+'</h4><p>'+hl(it.desc,ql)+'</p></div></a></li>').join('')+'</ul></div>').join('')}
+  sr.classList.add('open');
+}
+
+window.doSearch=doSearch;
+
+let dbt;
+function onSearchInput(v){clearTimeout(dbt);dbt=setTimeout(()=>doSearch(v),200)}
+if(si){si.addEventListener('input',()=>onSearchInput(si.value));si.addEventListener('focus',()=>{if(si.value)doSearch(si.value)})}
+if(ms){ms.addEventListener('input',()=>{onSearchInput(ms.value);if(si)si.value=ms.value})}
+if(sbtn)sbtn.addEventListener('click',()=>{if(si&&si.value.trim())doSearch(si.value);else if(si)si.focus()});
+document.addEventListener('click',e=>{if(sr&&!sr.contains(e.target)&&e.target!==si&&e.target!==sbtn)sr.classList.remove('open')});
+
+/* ── FAQ ── */
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const it=btn.closest('.faq-item'),open=it.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-q').setAttribute('aria-expanded','false')});
+    if(!open){it.classList.add('open');btn.setAttribute('aria-expanded','true')}
+  });
+});
+
+/* ── newsletter ── */
+const nlf=document.getElementById('nl-form');
+const nls=document.getElementById('nl-success');
+if(nlf)nlf.addEventListener('submit',e=>{
+  e.preventDefault();
+  const v=document.getElementById('nl-email').value.trim();
+  if(!EMAIL_RE.test(v)){toast('Please enter a valid email address','error');return}
+  nlf.style.display='none';
+  if(nls)nls.classList.add('show');
+  try{localStorage.setItem('qe-nl','1')}catch(_){}
+});
+
+/* ── contact form ── */
+const cf=document.getElementById('contact-form');
+if(cf)cf.addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=cf.querySelector('#cf-name').value.trim();
+  const email=cf.querySelector('#cf-email').value.trim();
+  const msg=cf.querySelector('#cf-msg').value.trim();
+  if(!name||!email||!msg){toast('Please fill in all required fields','error');return}
+  if(!EMAIL_RE.test(email)){toast('Please enter a valid email address','error');return}
+  toast("Message sent! We'll respond within one business day.",'success');
+  cf.reset();
+});
+
+/* ── password toggle ── */
+document.querySelectorAll('.pw-eye').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const inp=btn.closest('.input-group').querySelector('input');
+    const hide=inp.type==='password';
+    inp.type=hide?'text':'password';
+    btn.setAttribute('aria-label',hide?'Hide password':'Show password');
+    btn.innerHTML=hide
+      ?'<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>'
+      :'<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+  });
+});
+
+/* ── modal ── */
+let lastModalTrig=null;
+function openModal(m){
+  if(!m)return;
+  m.classList.add('open');
+  const f=m.querySelector('button,a,[tabindex]');
+  if(f)f.focus();
+  trapFocus(m);
+}
+function closeModal(){
+  document.querySelectorAll('.modal-bg.open').forEach(m=>m.classList.remove('open'));
+  releaseTrap();
+  if(lastModalTrig)lastModalTrig.focus();
+  lastModalTrig=null;
+}
+document.querySelectorAll('[data-confirm]').forEach(t=>{
+  t.addEventListener('click',e=>{e.preventDefault();lastModalTrig=t;openModal(document.getElementById(t.dataset.confirm))});
+});
+document.querySelectorAll('.modal-cancel').forEach(b=>b.addEventListener('click',closeModal));
+document.querySelectorAll('.modal-bg').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)closeModal()}));
+document.querySelectorAll('.modal-confirm').forEach(b=>b.addEventListener('click',()=>{const a=b.dataset.action;closeModal();if(a==='unsub')toast('You have been unsubscribed','success')}));
+
+/* ── cookie ── */
+const cb=document.getElementById('cookie-bar');
+const CK='qe-cookie';
+function showCookie(){let a;try{a=localStorage.getItem(CK)}catch(_){}; if(!a&&cb)setTimeout(()=>{cb.classList.add('show');document.body.classList.add('cookie-active')},1400)}
+function hideCookie(){cb&&cb.classList.remove('show');document.body.classList.remove('cookie-active')}
+document.getElementById('cookie-accept')?.addEventListener('click',()=>{try{localStorage.setItem(CK,'1')}catch(_){};hideCookie()});
+document.getElementById('cookie-decline')?.addEventListener('click',hideCookie);
+showCookie();
+
+/* ── toast ── */
+let tTimer;
+function toast(msg,type='info'){
+  const t=document.getElementById('toast');
+  if(!t)return;
+  const icon=type==='success'?'✓':type==='error'?'✕':'ℹ';
+  t.className='t-'+type;
+  t.innerHTML='<span aria-hidden="true">'+icon+'</span> '+esc(msg);
+  t.classList.add('show');
+  clearTimeout(tTimer);
+  tTimer=setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+/* ── ripple ── */
+document.querySelectorAll('.btn,.btn-gold,.btn-ghost').forEach(b=>{
+  b.addEventListener('click',function(e){
+    const r=document.createElement('span');r.className='ripple';r.setAttribute('aria-hidden','true');
+    const rc=this.getBoundingClientRect(),sz=Math.max(rc.width,rc.height);
+    r.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+(e.clientX-rc.left-sz/2)+'px;top:'+(e.clientY-rc.top-sz/2)+'px';
+    this.appendChild(r);setTimeout(()=>r.remove(),600);
+  });
+});
+
+/* ── reveal (scroll animation) ── */
+const obs=new IntersectionObserver(ens=>{ens.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');obs.unobserve(en.target)}})},{threshold:.1,rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ── UTM on outbound links ── */
+document.querySelectorAll('a[href]').forEach(lk=>{
+  const h=lk.getAttribute('href');
+  if(!h)return;
+  try{
+    const u=new URL(h,window.location.href);
+    if(u.hostname&&u.hostname!==window.location.hostname&&!h.startsWith('mailto:')&&!h.startsWith('tel:')){
+      lk.addEventListener('click',function(){
+        try{const u2=new URL(this.getAttribute('href'),window.location.href);u2.searchParams.set('utm_source','qawwamempire');u2.searchParams.set('utm_medium','referral');u2.searchParams.set('utm_campaign','website');this.setAttribute('href',u2.toString())}catch(_){}
+      });
+    }
+  }catch(_){}
+});
+
+/* ── last updated timestamp ── */
+document.querySelectorAll('[data-updated]').forEach(el=>{
+  const d=new Date(el.getAttribute('data-updated'));
+  if(isNaN(d))return;
+  const diff=Math.floor((new Date()-d)/1000);
+  let r;
+  if(diff<60)r='just now';
+  else if(diff<3600)r=Math.floor(diff/60)+'m ago';
+  else if(diff<86400)r=Math.floor(diff/3600)+'h ago';
+  else if(diff<2592000)r=Math.floor(diff/86400)+'d ago';
+  else r=d.toLocaleDateString('en-MY',{year:'numeric',month:'short',day:'numeric'});
+  el.textContent='Updated '+r;
+  el.title=d.toLocaleString('en-MY');
+});
+
+/* ── aria-current on nav ── */
+const cp=window.location.pathname;
+document.querySelectorAll('.nav-links a,.mobile-panel a').forEach(lk=>{
+  const h=lk.getAttribute('href');
+  if(!h||h.startsWith('#')||h.startsWith('/#'))return;
+  try{if(new URL(lk.href,window.location.href).pathname===cp)lk.setAttribute('aria-current','page')}catch(_){}
+});
+
+/* ── escape key closes overlays ── */
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeNav();closeModal();if(sr)sr.classList.remove('open')}});
+
+})();
+</script>
 </body>
 </html>
