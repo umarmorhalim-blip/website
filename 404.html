@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>404 — Page Not Found | Qawwam Empire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    .error-page-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .error-bg-num {
+      font-family: var(--font-heading);
+      font-size: clamp(8rem, 20vw, 18rem);
+      font-weight: 800;
+      color: var(--color-accent);
+      opacity: .05;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      pointer-events: none;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .error-content { position: relative; z-index: 1; max-width: 520px; }
+
+    .error-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(201,168,76,.1);
+      border: 2px solid rgba(201,168,76,.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--color-accent);
+    }
+
+    .error-content h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      margin-bottom: .75rem;
+    }
+
+    .error-content p {
+      color: var(--color-text-muted);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .error-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .popular-links {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .popular-links h3 {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--color-text-muted);
+      margin-bottom: 1rem;
+      font-family: var(--font-sans);
+    }
+
+    .popular-links ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      justify-content: center;
+    }
+
+    .popular-links a {
+      padding: .4rem .85rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      font-size: .85rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: border-color var(--transition), color var(--transition);
+    }
+    .popular-links a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+    .search-404 {
+      position: relative;
+      max-width: 380px;
+      margin: 0 auto 2rem;
+    }
+    .search-404 input {
+      width: 100%;
+      padding: .75rem 3rem .75rem 1.25rem;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-full);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-size: .9rem;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .search-404 input:focus {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(201,168,76,.12);
+    }
+    .search-404 button {
+      position: absolute;
+      right: .75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-muted);
+      transition: color var(--transition);
+    }
+    .search-404 button:hover { color: var(--color-accent); }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo">Qawwam<span>Empire</span></a>
+      <div class="header-actions" style="margin-left:auto">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <span class="icon-moon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+          <span class="icon-sun"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span>
+        </button>
+        <a href="/" class="btn btn-primary btn-sm">← Back Home</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="error-page-wrap">
+    <div class="error-bg-num" aria-hidden="true">404</div>
+    <div class="error-content">
+      <div class="error-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <h1>This page doesn't exist</h1>
+      <p>The page you're looking for may have been moved, renamed, or never existed. Let's get you back on track.</p>
+
+      <div class="search-404">
+        <label for="search-404" class="sr-only">Search the site</label>
+        <input type="search" id="search-404" placeholder="Search for something…" />
+        <button aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+      </div>
+
+      <div class="error-actions">
+        <a href="/" class="btn btn-primary">Go Home</a>
+        <a href="javascript:history.back()" class="btn btn-outline">Go Back</a>
+        <a href="/#contact" class="btn btn-ghost">Report Issue</a>
+      </div>
+
+      <div class="popular-links">
+        <h3>Popular pages</h3>
+        <ul>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#blog">Blog</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+    const s = document.getElementById('search-404');
+    if (s) {
+      s.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && s.value.trim()) {
+          window.location.href = '/?q=' + encodeURIComponent(s.value.trim()) + '#search';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

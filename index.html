@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Qawwam Empire — Strategy, consulting and execution for ambitious businesses." />
+  <meta property="og:title" content="Qawwam Empire" />
+  <meta property="og:description" content="Strategy, consulting and execution for ambitious businesses." />
+  <meta property="og:type" content="website" />
+  <title>Qawwam Empire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div id="page-loader" aria-hidden="true">
+    <div class="loader-ring"></div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress" role="progressbar" aria-hidden="true"></div>
+
+  <!-- Skip to Content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="/" class="logo">Qawwam<span>Empire</span></a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="/" aria-current="page">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Search -->
+        <div class="header-search" role="search">
+          <label for="search-input" class="sr-only">Search the site</label>
+          <input type="search" id="search-input" placeholder="Search…" autocomplete="off" aria-label="Search site content" />
+          <button aria-label="Submit search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </button>
+        </div>
+
+        <!-- Dark Mode -->
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <span class="icon-moon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </span>
+          <span class="icon-sun">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </span>
+        </button>
+
+        <!-- CTA -->
+        <a href="#contact" class="btn btn-primary btn-sm">Get Started</a>
+
+        <!-- Hamburger -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search Results Overlay -->
+  <div id="search-results" class="search-results" role="listbox" aria-label="Search results">
+    <div class="search-results-inner"></div>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <nav class="mobile-nav-panel">
+      <button id="mobile-nav-close" style="align-self:flex-end;margin-bottom:.5rem;color:var(--color-text-muted);padding:.25rem;" aria-label="Close menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <a href="/">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#blog">Blog</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--color-border)">
+        <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Get Started</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ===== MAIN ===== -->
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content fade-in">
+          <div class="hero-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+            Trusted by ambitious builders
+          </div>
+          <h1>Build an Empire,<br /><span>Not Just a Business</span></h1>
+          <p class="hero-desc">
+            Qawwam Empire delivers strategy, consulting and execution frameworks for leaders who refuse to settle. From early-stage startups to scaling enterprises.
+          </p>
+          <div class="hero-actions">
+            <a href="#services" class="btn btn-primary btn-lg">Explore Services</a>
+            <a href="#about" class="btn btn-outline btn-lg">Our Story</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section-sm" style="background:var(--color-bg-alt)">
+      <div class="container">
+        <div class="stats-grid fade-in">
+          <div class="stat-item">
+            <h3><span data-target="200" data-suffix="+">0+</span></h3>
+            <p>Clients Served</p>
+          </div>
+          <div class="stat-item">
+            <h3><span data-target="95" data-suffix="%">0%</span></h3>
+            <p>Satisfaction Rate</p>
+          </div>
+          <div class="stat-item">
+            <h3><span data-target="7" data-suffix="yrs">0yrs</span></h3>
+            <p>In Business</p>
+          </div>
+          <div class="stat-item">
+            <h3><span data-target="50" data-suffix="M+">0M+</span></h3>
+            <p>Revenue Generated</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="fade-in">
+          <span class="badge badge-gold">About Us</span>
+          <h2 class="section-title" style="margin-top:.75rem">We Build from Purpose</h2>
+          <p class="section-sub">Qawwam means "one who establishes and maintains." That ethos runs through everything we do — sustainable systems, not quick wins.</p>
+        </div>
+        <div class="grid-2 fade-in">
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Principled Strategy</h3>
+            <p>Every engagement begins with understanding your north star — and then building the architecture to get there with integrity.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Elite Team</h3>
+            <p>Our consultants come from Fortune 500s, fast-scaling startups and high-growth agencies. Deep expertise, no juniors on your project.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3>Measurable Results</h3>
+            <p>We attach KPIs to every deliverable. No ambiguous consulting decks — you get clear before/after metrics and accountability.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Long-Term Vision</h3>
+            <p>We build partnerships, not transactions. Our clients return because we see around corners they haven't turned yet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="fade-in">
+          <span class="badge badge-gold">Services</span>
+          <h2 class="section-title" style="margin-top:.75rem">What We Deliver</h2>
+          <p class="section-sub">End-to-end solutions across strategy, technology and growth — designed for organizations that move fast without breaking things.</p>
+        </div>
+        <div class="grid-3 fade-in">
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <h3>Business Strategy</h3>
+            <p>Market positioning, competitive moats, and growth roadmaps that hold up under real-world pressure.</p>
+            <a href="#contact" class="btn btn-ghost btn-sm" style="margin-top:1rem;padding-left:0">Learn more →</a>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3>Tech Consulting</h3>
+            <p>Architecture reviews, performance audits, and engineering team structuring for scalable products.</p>
+            <a href="#contact" class="btn btn-ghost btn-sm" style="margin-top:1rem;padding-left:0">Learn more →</a>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <h3>Brand & Content</h3>
+            <p>Positioning, messaging frameworks and content systems that compound over time and build authority.</p>
+            <a href="#contact" class="btn btn-ghost btn-sm" style="margin-top:1rem;padding-left:0">Learn more →</a>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3>Revenue Operations</h3>
+            <p>Sales processes, pipeline design and CRM architectures that shorten cycles and increase ACV.</p>
+            <a href="#contact" class="btn btn-ghost btn-sm" style="margin-top:1rem;padding-left:0">Learn more →</a>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+            </div>
+            <h3>Growth Engineering</h3>
+            <p>Data-driven acquisition, activation and retention systems built for durable, defensible growth.</p>
+            <a href="#contact" class="btn btn-ghost btn-sm" style="margin-top:1rem;padding-left:0">Learn more →</a>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+            </div>
+            <h3>Training & Workshops</h3>
+            <p>Immersive programs for leadership teams and high-potential individuals ready to level up fast.</p>
+            <a href="#contact" class="btn btn-ghost btn-sm" style="margin-top:1rem;padding-left:0">Learn more →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- BLOG -->
+    <section class="section" id="blog">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;" class="fade-in">
+          <div>
+            <span class="badge badge-gold">Blog</span>
+            <h2 class="section-title" style="margin-top:.75rem">Insights & Resources</h2>
+          </div>
+          <a href="#blog" class="btn btn-outline btn-sm">View all posts</a>
+        </div>
+        <div class="grid-3 fade-in">
+
+          <article class="post-card">
+            <div class="post-card-img">📊</div>
+            <div class="post-card-body">
+              <div class="post-meta">
+                <span class="badge badge-gold">Engineering</span>
+                <span>8 min read</span>
+              </div>
+              <h3><a href="blog/performance.html">Web Performance Deep Dive: N+1s, Re-renders & Dead Code</a></h3>
+              <p>A complete engineering breakdown of the 19-item performance checklist — with code, benchmarks and priority rankings.</p>
+              <div class="last-updated">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span data-updated="2026-09-17T10:00:00Z">Loading…</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <div class="post-card-img">🧭</div>
+            <div class="post-card-body">
+              <div class="post-meta">
+                <span class="badge badge-gold">Strategy</span>
+                <span>5 min read</span>
+              </div>
+              <h3><a href="#">The Qawwam Framework for Sustainable Growth</a></h3>
+              <p>How to build systems that outlast trends, withstand market shocks and compound over years — not quarters.</p>
+              <div class="last-updated">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span data-updated="2026-09-10T08:30:00Z">Loading…</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <div class="post-card-img">💡</div>
+            <div class="post-card-body">
+              <div class="post-meta">
+                <span class="badge badge-gold">Leadership</span>
+                <span>6 min read</span>
+              </div>
+              <h3><a href="#">Building High-Trust Teams in a Remote-First World</a></h3>
+              <p>Trust isn't a soft metric. Here's the playbook for building it deliberately, measuring it, and repairing it when it breaks.</p>
+              <div class="last-updated">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span data-updated="2026-09-05T14:00:00Z">Loading…</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- TESTIMONIALS -->
+    <section class="section" style="background:var(--color-bg-alt)">
+      <div class="container">
+        <div class="fade-in text-center" style="margin-bottom:2.5rem">
+          <span class="badge badge-gold">Testimonials</span>
+          <h2 class="section-title" style="margin-top:.75rem">What Our Clients Say</h2>
+        </div>
+        <div class="grid-3 fade-in">
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Qawwam Empire reshaped how we think about growth. The frameworks they installed are still running two years later. Exceptional ROI."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">AR</div>
+              <div>
+                <div class="author-name">Ahmed Rashid</div>
+                <div class="author-role">CEO, NovaTech Solutions</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-text">"They didn't just deliver a strategy deck — they stayed in the trenches with us until it was running. That's rare in consulting."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">SM</div>
+              <div>
+                <div class="author-name">Sara Malik</div>
+                <div class="author-role">Founder, Ascend Brands</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-text">"The tech audit alone saved us six months of the wrong architecture. Brutal honesty delivered with genuine care. Highly recommend."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">YK</div>
+              <div>
+                <div class="author-name">Yusuf Khan</div>
+                <div class="author-role">CTO, Meridian Digital</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container" style="max-width:760px">
+        <div class="fade-in text-center" style="margin-bottom:2.5rem">
+          <span class="badge badge-gold">FAQ</span>
+          <h2 class="section-title" style="margin-top:.75rem">Common Questions</h2>
+          <p class="section-sub mx-auto">Everything you need to know before getting started.</p>
+        </div>
+        <div class="fade-in">
+          <div class="faq-item">
+            <button class="faq-question">
+              What industries do you work with?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                We work across SaaS, e-commerce, professional services, media and education. Our frameworks are industry-agnostic — we adapt the principles to your specific context, competition and constraints.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              How long does an engagement typically last?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Diagnostic sprints run 2–4 weeks. Full strategy + execution engagements typically span 3–6 months. We also offer ongoing advisory retainers for clients who want continuous strategic guidance.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              Do you work with early-stage startups?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes — with the right fit. We look for founders with clarity of vision, willingness to execute, and at least early proof of demand. If you're pre-product, we recommend our founder workshop before a full engagement.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              What does pricing look like?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                We price based on scope and value created — not hourly rates. Diagnostic sprints start at $4,500. Full engagements are scoped after an initial discovery call. We're selective, not cheap, but clients consistently report 10x+ returns.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              How do I know if we're a good fit?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Book a 30-minute discovery call. We'll ask hard questions and give you honest answers. If we're not the right fit, we'll tell you — and often refer you to someone who is.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- NEWSLETTER -->
+    <section class="section" id="newsletter">
+      <div class="container">
+        <div class="newsletter fade-in">
+          <span class="badge" style="background:rgba(201,168,76,.2);color:var(--color-accent);margin-bottom:1rem;display:inline-block;">Newsletter</span>
+          <h2>Weekly Insights, Zero Noise</h2>
+          <p>Strategy, technology and leadership — curated every week for ambitious operators.</p>
+          <form id="newsletter-form" class="newsletter-form" novalidate>
+            <input type="email" placeholder="your@email.com" required aria-label="Email address" />
+            <button type="submit" class="btn btn-primary">Subscribe →</button>
+          </form>
+          <div id="newsletter-success" class="newsletter-success" role="alert">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            You're in! First issue lands this Sunday.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container" style="max-width:680px">
+        <div class="fade-in text-center" style="margin-bottom:2.5rem">
+          <span class="badge badge-gold">Contact</span>
+          <h2 class="section-title" style="margin-top:.75rem">Start the Conversation</h2>
+          <p class="section-sub mx-auto">No forms lost in the void. We read every message and respond within one business day.</p>
+        </div>
+        <form class="fade-in" novalidate>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label" for="name">Full Name</label>
+              <input class="form-input" type="text" id="name" placeholder="Omar Al-Rashid" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email</label>
+              <input class="form-input" type="email" id="email" placeholder="you@company.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="company">Company (optional)</label>
+            <input class="form-input" type="text" id="company" placeholder="Acme Corp" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-input" id="message" rows="4" placeholder="Tell us about your goals…" required></textarea>
+          </div>
+
+          <!-- Password field demo -->
+          <div class="form-group">
+            <label class="form-label" for="portal-password">Portal Password <span style="font-weight:400;color:var(--color-text-muted)">(existing clients)</span></label>
+            <div class="input-group">
+              <input type="password" id="portal-password" class="form-input" placeholder="••••••••" autocomplete="current-password" />
+              <button type="button" class="pw-toggle" aria-label="Show password">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
+            <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+            <!-- Confirmation modal trigger demo -->
+            <button type="button" class="btn btn-danger btn-sm" data-confirm="modal-delete">Delete Account</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">Qawwam<span>Empire</span></div>
+          <p>Strategy, consulting and execution for ambitious businesses.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="blog/performance.html">Performance Guide</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Qawwam Empire. All rights reserved.</span>
+        <div style="display:flex;gap:1rem">
+          <a href="https://twitter.com/qawwamempire" target="_blank" rel="noopener" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://linkedin.com/company/qawwamempire" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING CONTACT ===== -->
+  <a href="#contact" class="float-contact" aria-label="Contact us">
+    <span class="float-contact-label">Contact us</span>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  </a>
+
+  <!-- ===== BACK TO TOP ===== -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- ===== COOKIE BANNER ===== -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
+    <p>We use cookies to improve your experience. <a href="#">Learn more</a>.</p>
+    <div class="cookie-banner-actions">
+      <button id="cookie-decline" class="btn btn-outline btn-sm">Decline</button>
+      <button id="cookie-accept" class="btn btn-primary btn-sm">Accept</button>
+    </div>
+  </div>
+
+  <!-- ===== CONFIRMATION MODAL ===== -->
+  <div class="modal-overlay" id="modal-delete" role="dialog" aria-modal="true" aria-labelledby="modal-delete-title">
+    <div class="modal">
+      <div class="modal-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+      </div>
+      <h3 id="modal-delete-title">Delete Account?</h3>
+      <p>This action is permanent and cannot be undone. All your data, projects and history will be erased immediately.</p>
+      <div class="modal-actions">
+        <button class="btn btn-outline modal-cancel">Cancel</button>
+        <button class="btn btn-danger modal-confirm" data-action="delete">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
