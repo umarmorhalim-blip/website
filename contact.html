@@ -30,6 +30,7 @@
     <nav class="nav" id="site-nav" aria-label="Main">
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
+      <a href="news.html">News</a>
       <a href="https://safefiplus.com" target="_blank" rel="noopener">SafeFi+ <span aria-hidden="true">&#8599;</span><span class="sr-only"> (opens in a new tab)</span></a>
       <a class="nav-cta" href="contact.html">Contact us</a>
     </nav>
@@ -125,14 +126,16 @@
     <div class="footer-grid">
       <div>
         <img src="assets/img/logo.png" width="480" height="184" alt="Qawwam Empire" loading="lazy">
-        <p>Corporate advisory, training and digital-asset solutions, guided by Shariah values and sound governance.</p>
+        <p>Corporate advisory, training and digital-asset solutions, guided by Shariah principles and sound governance.</p>
       </div>
       <div>
         <h2>Company</h2>
         <ul>
           <li><a href="about.html">About</a></li>
           <li><a href="about.html#board">Board of Directors</a></li>
+          <li><a href="about.html#advisors">Board of Advisors</a></li>
           <li><a href="about.html#governance">Governance</a></li>
+          <li><a href="news.html">News</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
@@ -165,7 +168,7 @@
 <script>
 (function () {
   var t = new URLSearchParams(location.search).get('topic');
-  var map = { training: 'Training & development', advisory: 'Blockchain & digital-asset consultancy', partnership: 'Business partnership' };
+  var map = { training: 'Training & development', advisory: 'Blockchain & digital-asset consultancy', partnership: 'Business partnership', media: 'Media & press' };
   var s = document.getElementById('f-topic');
   if (t && map[t] && s) s.value = map[t];
 })();
