@@ -308,3 +308,18 @@ ul, ol { list-style: none; }
 @media print {
   .site-header, .menu-btn, .form, .skip, .closing { display: none !important; }
 }
+
+/* Hero motif: a fragment of a block lattice, drawn once and left still.
+   The single filled cell reads as the newest block in the chain. */
+.hero-side { display: grid; gap: 2.75rem; }
+.hx { justify-self: end; width: 162px; height: auto; overflow: visible; }
+.hx polygon { fill: none; stroke: var(--rule-strong); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.hx .hx-block { fill: var(--accent); stroke: var(--accent); }
+@media (prefers-reduced-motion: no-preference) {
+  .js .hx .hx-block { opacity: 0; animation: hx-settle .9s var(--ease) .5s forwards; }
+  @keyframes hx-settle { from { opacity: 0; transform: translateX(6px); } to { opacity: 1; transform: none; } }
+}
+@media (max-width: 880px) {
+  .hero-side { gap: 0; }
+  .hx { display: none; }
+}
