@@ -44,6 +44,7 @@
   var form = document.getElementById('enquiry');
   if (!form) return;
   var submit = form.querySelector('[type="submit"]');
+  var submitLabel = submit.firstChild.textContent;
   var ok = document.getElementById('form-ok');
   var fail = document.getElementById('form-fail');
 
@@ -79,7 +80,7 @@
       .then(function (r) { return r.json(); })
       .then(function (json) {
         if (!json.success) throw new Error(json.message);
-        form.querySelectorAll('.field, .form-foot').forEach(function (el) { el.hidden = true; });
+        form.querySelectorAll('.field, .form-foot, .form-req').forEach(function (el) { el.hidden = true; });
         ok.hidden = false;
         ok.focus();
         form.reset();
@@ -87,7 +88,7 @@
       .catch(function () {
         fail.hidden = false;
         submit.disabled = false;
-        submit.firstChild.textContent = 'Send enquiry ';
+        submit.firstChild.textContent = submitLabel;
       });
   });
 })();
