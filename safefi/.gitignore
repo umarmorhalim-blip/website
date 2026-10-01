@@ -11,3 +11,5 @@ brag-output/work/film.html
 brag-output/work/*.log
 brag-output/work/*.wav
 brag-output/work/*.png
+brag-output/work/*.jpg
+brag-output/work/*.mp4
