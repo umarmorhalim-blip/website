@@ -347,17 +347,46 @@ ul, ol { list-style: none; }
   .site-header, .menu-btn, .form, .skip, .closing { display: none !important; }
 }
 
-/* Hero motif: a fragment of a block lattice, drawn once and left still.
-   The single filled cell reads as the newest block in the chain. */
+/* Block-lattice motif — the one blockchain cue, used sparingly.
+   Cells draw in once; the filled cell is the newest block and gives a
+   slow "confirmation" pulse. Everything is static under reduced motion. */
 .hero-side { display: grid; gap: 2.75rem; }
-.hx { justify-self: end; width: 162px; height: auto; overflow: visible; }
+.hx { display: block; width: 162px; height: auto; overflow: visible; }
+.hero-side .hx { justify-self: end; }
 .hx polygon { fill: none; stroke: var(--rule-strong); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .hx .hx-block { fill: var(--accent); stroke: var(--accent); }
-@media (prefers-reduced-motion: no-preference) {
-  .js .hx .hx-block { opacity: 0; animation: hx-settle .9s var(--ease) .5s forwards; }
-  @keyframes hx-settle { from { opacity: 0; transform: translateX(6px); } to { opacity: 1; transform: none; } }
+.hx .hx-halo { stroke: var(--accent); opacity: 0; transform-box: fill-box; transform-origin: center; }
+
+.page-head .wrap { position: relative; }
+.hx-sm { position: absolute; right: var(--gutter); top: .25rem; width: 96px; }
+
+.closing { position: relative; overflow: hidden; }
+.closing .wrap { position: relative; z-index: 1; }
+.hx-bg { position: absolute; right: -40px; top: -52px; width: 380px; pointer-events: none; }
+.hx-bg polygon { stroke: rgba(255, 255, 255, .1); }
+.hx-bg .hx-block { fill: rgba(220, 184, 114, .12); stroke: var(--accent-on-navy); opacity: .85; }
+.hx-bg .hx-halo { stroke: var(--accent-on-navy); }
+
+/* Section folio marker: a single small block */
+.folio b::before {
+  content: ''; display: inline-block; width: .74em; height: .84em; margin-right: .45em; vertical-align: -.1em;
+  background: currentColor; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .hx .hx-cell { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hx-draw .7s var(--ease) forwards; animation-delay: calc(var(--i) * 90ms + 150ms); }
+  .js .hx .hx-block { opacity: 0; animation: hx-settle .8s var(--ease) forwards; animation-delay: calc(var(--n) * 90ms + 300ms); }
+  .js .hx-bg .hx-block { animation-name: hx-settle-bg; }
+  .hx .hx-halo { animation: hx-pulse 5s ease-out infinite; animation-delay: calc(var(--n) * 90ms + 1.6s); }
+  @keyframes hx-draw { to { stroke-dashoffset: 0; } }
+  @keyframes hx-settle { from { opacity: 0; transform: translateX(6px); } to { opacity: 1; transform: none; } }
+  @keyframes hx-settle-bg { from { opacity: 0; } to { opacity: .85; } }
+  @keyframes hx-pulse { 0% { opacity: .6; transform: scale(1); } 45%, 100% { opacity: 0; transform: scale(1.5); } }
+}
+
 @media (max-width: 880px) {
-  .hero-side { gap: 0; }
-  .hx { display: none; }
+  .hero-side { gap: 2rem; }
+  .hero-side .hx { justify-self: start; width: 116px; order: -1; }
+  .hx-sm { display: none; }
+  .hx-bg { width: 240px; right: -60px; top: -60px; }
 }
