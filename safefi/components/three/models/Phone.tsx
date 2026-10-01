@@ -8,6 +8,17 @@ import { journey } from "@/lib/journey";
 import { range } from "@/lib/math";
 import { PHONE } from "../layout";
 import { canvasTexture, font, redraw, roundRect } from "../textures";
+
+/** Soft pill-shaped glow for the Confirm button. */
+function pillGlow() {
+  return canvasTexture(256, 96, (ctx, w, h) => {
+    ctx.shadowColor = "#fff";
+    ctx.shadowBlur = 22;
+    ctx.fillStyle = "#fff";
+    roundRect(ctx, 26, 24, w - 52, h - 48, (h - 48) / 2);
+    ctx.fill();
+  });
+}
 import { MATERIAL_SLOTS, MODELS } from "./registry";
 import { ModelSlot } from "./ModelSlot";
 
@@ -75,6 +86,8 @@ export function Phone() {
   const stateRef = useRef<ScreenState>("idle");
   const texture = useMemo(() => canvasTexture(512, 1072, drawScreen("idle")), []);
   const screenMaterial = useMemo(() => new THREE.MeshBasicMaterial({ map: texture }), [texture]);
+  const glowMap = useMemo(pillGlow, []);
+  useEffect(() => () => glowMap.dispose(), [glowMap]);
   const materials = useMemo(() => ({ [MATERIAL_SLOTS.phoneScreen]: screenMaterial }), [screenMaterial]);
   useEffect(() => () => (texture.dispose(), screenMaterial.dispose()), [texture, screenMaterial]);
 
@@ -112,8 +125,8 @@ export function Phone() {
       </ModelSlot>
       {/* Confirm button glow, aligned with the button drawn on the screen texture. */}
       <mesh ref={glow} position={[0, -0.66, 0.075]}>
-        <planeGeometry args={[0.92, 0.24]} />
-        <meshBasicMaterial color={new THREE.Color(BRAND.purple).multiplyScalar(2)} toneMapped={false} transparent opacity={0} depthWrite={false} blending={THREE.AdditiveBlending} />
+        <planeGeometry args={[1.08, 0.4]} />
+        <meshBasicMaterial map={glowMap} color={new THREE.Color(BRAND.purple).multiplyScalar(2)} toneMapped={false} transparent opacity={0} depthWrite={false} blending={THREE.AdditiveBlending} />
       </mesh>
       <pointLight position={[0, 0, 1.4]} color={BRAND.purple} intensity={4} distance={5} />
     </group>

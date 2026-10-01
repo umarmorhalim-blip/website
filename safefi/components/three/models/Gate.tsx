@@ -46,7 +46,7 @@ export function Gate() {
       labels.current.children.forEach((c, i) => {
         const sprite = c as THREE.Sprite;
         sprite.material.opacity = range(show, i * 0.25, 0.75 + i * 0.25);
-        const k = 0.3 * (0.8 + 0.2 * sprite.material.opacity);
+        const k = 0.22 * (0.8 + 0.2 * sprite.material.opacity);
         sprite.scale.set(k * pills[i].aspect, k, 1);
       });
     }

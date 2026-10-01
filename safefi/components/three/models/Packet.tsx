@@ -49,7 +49,7 @@ const GHOSTS = 4;
 export function Packet() {
   const refs = useRef<(THREE.Mesh | null)[]>([]);
   const states = useMemo(() => Array.from({ length: GHOSTS + 1 }, () => ({ pos: new THREE.Vector3(), scale: 0, gold: 0 })), []);
-  const purple = useMemo(() => new THREE.Color(BRAND.purpleLight).multiplyScalar(1.6), []);
+  const purple = useMemo(() => new THREE.Color(BRAND.purple).multiplyScalar(1.5), []);
   const gold = useMemo(() => new THREE.Color(BRAND.gold).multiplyScalar(1.8), []);
 
   useFrame((state) => {
@@ -72,7 +72,7 @@ export function Packet() {
     <group>
       {states.map((_, i) => (
         <mesh key={i} ref={(m) => void (refs.current[i] = m)} visible={false}>
-          <icosahedronGeometry args={[0.11, 1]} />
+          <icosahedronGeometry args={[0.085, 2]} />
           <meshBasicMaterial toneMapped={false} transparent opacity={i === 0 ? 1 : 0.45} depthWrite={i === 0} />
         </mesh>
       ))}

@@ -5,3 +5,9 @@ next-env.d.ts
 *.tsbuildinfo
 .env*.local
 standalone-dist/
+brag-output/work/frames/
+brag-output/work/stills/
+brag-output/work/film.html
+brag-output/work/*.log
+brag-output/work/*.wav
+brag-output/work/*.png

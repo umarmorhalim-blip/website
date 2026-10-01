@@ -25,6 +25,8 @@ const Scene = dynamic(() => import("./three/Scene"), { ssr: false });
  * moves the story on. Chapter c rests at timeline time c.
  */
 const HOLD = 0.22;
+
+const isCapture = () => new URLSearchParams(window.location.search).has("capture");
 const MOVE = 1 - 2 * HOLD;
 
 export function Journey() {
@@ -79,6 +81,21 @@ export function Journey() {
       dots.forEach((d, i) => d.toggleAttribute("data-active", i === current));
       setChapter(p);
     };
+
+    // ?capture: no scroll; a recorder sets the story position directly
+    // (used to render the launch video frame by frame).
+    if (isCapture()) {
+      (window as unknown as { __journey: unknown }).__journey = {
+        set(p: number) {
+          journey.p = p;
+          render();
+        },
+      };
+      render();
+      return () => {
+        journey.p = 0;
+      };
+    }
 
     (async () => {
       const [{ gsap }, { ScrollTrigger }] = await Promise.all([import("gsap"), import("gsap/ScrollTrigger")]);
@@ -135,6 +152,8 @@ export function Journey() {
       if (typeof window.requestIdleCallback === "function") window.requestIdleCallback(go, { timeout: 2500 });
       else setTimeout(go, 1200);
     };
+    // Capture: start at once, but only after fonts load (3D labels are drawn with them).
+    if (isCapture()) return void document.fonts.ready.then(go);
     if (document.readyState === "complete") idle();
     else window.addEventListener("load", idle, { once: true });
     // Start sooner if the visitor begins scrolling before the page is idle.

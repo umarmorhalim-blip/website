@@ -1,6 +1,6 @@
 "use client";
 import { PerformanceMonitor } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { advance, Canvas } from "@react-three/fiber";
 import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
 import { useMemo, useState } from "react";
 import { BRAND } from "@/lib/brand";
@@ -34,10 +34,12 @@ export default function Scene({ tier, active, onReady }: Props) {
   const [low, setLow] = useState(tier === "low");
   const mobile = useMemo(isMobileViewport, []);
   const maxDpr = low ? 1 : mobile ? 1.5 : 2;
+  // ?capture: frames are rendered on demand at exact timestamps by a recorder.
+  const capture = useMemo(() => new URLSearchParams(window.location.search).has("capture"), []);
 
   return (
     <Canvas
-      frameloop={active ? "always" : "never"}
+      frameloop={capture || !active ? "never" : "always"}
       dpr={[1, maxDpr]}
       // MSAA is handled by the composer; on the low tier there is none (dpr does the work).
       gl={{ antialias: false, alpha: false, stencil: false, powerPreference: "high-performance" }}
@@ -46,11 +48,12 @@ export default function Scene({ tier, active, onReady }: Props) {
         gl.setClearColor(BRAND.bg);
         // Allow the browser to restore a lost context (e.g. after backgrounding on iOS).
         gl.domElement.addEventListener("webglcontextlost", (e) => e.preventDefault());
+        if (capture) (window as unknown as { __advance: (t: number) => void }).__advance = (t) => advance(t);
         requestAnimationFrame(onReady);
       }}
     >
       <fog attach="fog" args={[BRAND.bg, 22, 62]} />
-      <PerformanceMonitor bounds={(r) => (r > 90 ? [50, 90] : [36, 60])} flipflops={3} onDecline={() => setLow(true)} onFallback={() => setLow(true)} />
+      {!capture && <PerformanceMonitor bounds={(r) => (r > 90 ? [50, 90] : [36, 60])} flipflops={3} onDecline={() => setLow(true)} onFallback={() => setLow(true)} />}
 
       <ambientLight intensity={0.55} />
       <hemisphereLight args={[BRAND.purpleLight, BRAND.bg, 0.6]} />
